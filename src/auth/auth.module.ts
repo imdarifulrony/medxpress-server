@@ -1,12 +1,15 @@
+/**
+ * Auth Module
+ */
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
-import { PassportModule } from '@nestjs/passport';
+import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
+import { PassportModule } from '@nestjs/passport';
 import { UserSchema } from './schema/user.schema';
-import { ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [

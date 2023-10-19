@@ -1,15 +1,14 @@
-import {
-  BadRequestException,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+/**
+ * Auth Service
+ */
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
-import mongoose, { Model } from 'mongoose';
+import { Model } from 'mongoose';
+import { LoginDto } from './dto/login-dto';
 import { SignUpDto } from './dto/signup-dto';
 import { User } from './schema/user.schema';
-import { LoginDto } from './dto/login-dto';
 
 @Injectable()
 export class AuthService {

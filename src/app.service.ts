@@ -1,3 +1,6 @@
+/**
+ * App Service
+ */
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

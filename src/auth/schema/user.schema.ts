@@ -3,13 +3,23 @@
  */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
+// create enum for book category
+export enum userRole {
+  CUSTOMER = 'Customer',
+  SHOPOWNER = 'ShopOwner',
+  ADMIN = 'Admin',
+}
+
 @Schema({
   // it will automatically add time when a new user is created
   timestamps: true,
 })
 export class User {
   @Prop()
-  name: string;
+  firstName: string;
+
+  @Prop()
+  lastName: string;
 
   @Prop({ unique: [true, 'Duplicate email entered!'] })
   email: string;
@@ -17,11 +27,14 @@ export class User {
   @Prop()
   password: string;
 
-  @Prop({ unique: [true, 'Duplicate phone number entered!'] })
-  phoneNumber: string;
-
   @Prop()
   address: string;
+
+  @Prop()
+  postalCode: number;
+
+  @Prop()
+  role: userRole;
 }
 
 // export User schema

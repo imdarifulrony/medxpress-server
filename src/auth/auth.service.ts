@@ -23,9 +23,12 @@ export class AuthService {
    * @param
    * @param
    */
-  async signup(signupDto: SignUpDto): Promise<{ token: string }> {
+  async signup(
+    signupDto: SignUpDto,
+  ): Promise<{ access_token: string; expires_in: string }> {
     // extract data
-    const { name, email, password, phoneNumber, address } = signupDto;
+    const { firstName, lastName, postalCode, email, password, address, role } =
+      signupDto;
 
     // hash password using bcrypt
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -36,23 +39,29 @@ export class AuthService {
 
     // create new user in db
     const user = await this.userModel.create({
-      name,
+      firstName,
+      lastName,
+      postalCode,
       email,
-      phoneNumber,
       password: hashedPassword,
       address,
+      role,
     });
 
     // assign jwt to user
-    const token = this.jwtService.sign({
+    const access_token = this.jwtService.sign({
       id: user._id,
     });
 
+    const expires_in = process.env.JWT_EXPIRES_IN;
+
     // return the token to client
-    return { token };
+    return { access_token, expires_in };
   }
 
-  async login(loginDto: LoginDto): Promise<{ token: string }> {
+  async login(
+    loginDto: LoginDto,
+  ): Promise<{ access_token: string; expires_in: string }> {
     // extract data
     const { email, password } = loginDto;
 
@@ -69,11 +78,13 @@ export class AuthService {
     }
 
     // assign jwt to user
-    const token = this.jwtService.sign({
+    const access_token = this.jwtService.sign({
       id: user._id,
     });
 
+    const expires_in = process.env.JWT_EXPIRES_IN;
+
     // return the token to client
-    return { token };
+    return { access_token, expires_in };
   }
 }

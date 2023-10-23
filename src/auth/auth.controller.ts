@@ -16,7 +16,9 @@ export class AuthController {
    * @returns {Object}
    */
   @Post('/signup')
-  signup(@Body() signupDto: SignUpDto): Promise<{ token: string }> {
+  signup(
+    @Body() signupDto: SignUpDto,
+  ): Promise<{ access_token: string; expires_in: string }> {
     return this.authService.signup(signupDto);
   }
 
@@ -25,8 +27,10 @@ export class AuthController {
    * @param loginDto
    * @returns {Object}
    */
-  @Get('/login')
-  login(@Body() loginDto: LoginDto): Promise<{ token: string }> {
+  @Post('/login')
+  login(
+    @Body() loginDto: LoginDto,
+  ): Promise<{ access_token: string; expires_in: string }> {
     return this.authService.login(loginDto);
   }
 }

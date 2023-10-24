@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
+import { MedicineModule } from './medicine/medicine.module';
 
 @Module({
   imports: [
@@ -18,8 +19,9 @@ import { AuthModule } from './auth/auth.module';
     }),
     // Import Mongoose Modules
     MongooseModule.forRoot(process.env.MONGODB_URL),
-    AuthModule,
     // Imports other modules
+    AuthModule,
+    MedicineModule,
   ],
   controllers: [AppController],
   providers: [AppService],

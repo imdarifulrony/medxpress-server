@@ -4,7 +4,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 // create enum for book category
-export enum userRole {
+export enum UserRole {
   CUSTOMER = 'Customer',
   SHOPOWNER = 'ShopOwner',
   ADMIN = 'Admin',
@@ -34,7 +34,7 @@ export class User {
   postalCode: number;
 
   @Prop()
-  role: userRole;
+  role: UserRole;
 }
 
 // export User schema

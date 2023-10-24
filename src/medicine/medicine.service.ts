@@ -31,7 +31,6 @@ export class MedicineService {
   // Find All Medicine
   async findAllMedicineByQuery(queryParams: any): Promise<Medicine[]> {
     const { page, limit, search, ...filterParams } = queryParams;
-    console.log(search);
 
     // check for page,limit and search query parameters
     if (Object.keys(filterParams).length === 0 && !page && !limit && !search) {
@@ -69,7 +68,6 @@ export class MedicineService {
 
   // Find a single Medicine
   async findOneMedicine(id: string): Promise<Medicine> {
-    console.log('id', id);
     const medicine = await this.medicineModel.findById(id).exec();
 
     if (!medicine) {

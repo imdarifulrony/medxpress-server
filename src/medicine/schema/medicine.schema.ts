@@ -4,7 +4,7 @@ import { Document } from 'mongoose';
 @Schema({ timestamps: true })
 export class Medicine extends Document {
   @Prop()
-  brand_name: string;
+  name: string;
 
   @Prop()
   type: string;
@@ -25,7 +25,7 @@ export class Medicine extends Document {
   package_size: string;
 
   @Prop()
-  unit_price: string;
+  price: number;
 }
 
 export const MedicineSchema = SchemaFactory.createForClass(Medicine);

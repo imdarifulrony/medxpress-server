@@ -1,8 +1,8 @@
-import { IsArray, IsString } from 'class-validator';
+import { IsArray, IsNumber, IsString } from 'class-validator';
 
 export class CreateMedicineDto {
   @IsString()
-  brand_name: string;
+  name: string;
 
   @IsString()
   type: string;
@@ -22,6 +22,6 @@ export class CreateMedicineDto {
   @IsString()
   package_size: string;
 
-  @IsString()
-  unit_price: string;
+  @IsNumber()
+  price: number;
 }

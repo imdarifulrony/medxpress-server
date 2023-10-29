@@ -1,9 +1,9 @@
-import { IsOptional, IsString, IsArray } from 'class-validator';
+import { IsOptional, IsString, IsArray, IsNumber } from 'class-validator';
 
 export class UpdateMedicineDto {
   @IsOptional()
   @IsString()
-  brand_name: string;
+  name: string;
 
   @IsOptional()
   @IsString()
@@ -30,6 +30,6 @@ export class UpdateMedicineDto {
   package_size: string;
 
   @IsOptional()
-  @IsString()
-  unit_price: string;
+  @IsNumber()
+  price: number;
 }

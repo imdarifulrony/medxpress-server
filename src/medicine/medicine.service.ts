@@ -47,7 +47,7 @@ export class MedicineService {
     if (search) {
       const searchFilter = {
         $or: [
-          { brand_name: { $regex: search, $options: 'i' } },
+          { name: { $regex: search, $options: 'i' } },
           { generics: { $in: [search] } },
         ],
       };

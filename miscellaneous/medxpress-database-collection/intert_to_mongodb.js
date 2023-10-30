@@ -25,6 +25,7 @@ const modifyData = (data) => {
       package_size: item.package_size,
       price: parseFloat(item.price),
       image: item.image,
+      package_container: item.package_container,
     };
   });
 };

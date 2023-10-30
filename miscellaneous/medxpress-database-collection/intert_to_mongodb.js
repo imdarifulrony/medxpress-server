@@ -3,7 +3,7 @@ const fs = require('fs');
 const mongoURI = 'mongodb://localhost:27017';
 const dbName = 'medxpress';
 const collectionName = 'medicines';
-const dataFilePath = 'medicine_cleaned.json';
+const dataFilePath = 'medicine_with_img_icons.json';
 
 const readFileAsync = (filePath) =>
   new Promise((resolve, reject) => {
@@ -16,14 +16,15 @@ const readFileAsync = (filePath) =>
 const modifyData = (data) => {
   return data.map((item) => {
     return {
-      name: item.brand_name,
+      name: item.name,
       type: item.type,
       dosage_form: item.dosage_form,
       strength: item.strength,
       manufacturer: item.manufacturer,
       generics: item.generics,
       package_size: item.package_size,
-      price: parseFloat(item.unit_price),
+      price: parseFloat(item.price),
+      image: item.image,
     };
   });
 };

@@ -43,4 +43,7 @@ export class CheckoutDto {
   @ValidateNested({ each: true })
   @Type(() => CheckoutItem)
   items: CheckoutItem[];
+
+  @IsString()
+  userId: string;
 }

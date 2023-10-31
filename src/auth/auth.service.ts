@@ -87,4 +87,17 @@ export class AuthService {
     // return the token to client
     return { access_token, expires_in };
   }
+
+  async findUserById(id: string): Promise<User | null> {
+    try {
+      console.log('id', id);
+
+      // Use the Mongoose Model to find the user by ID
+      const user = await this.userModel.findById(id).exec();
+      return user;
+    } catch (error) {
+      // Handle any potential errors (e.g., database connection issues)
+      throw new UnauthorizedException('User not found');
+    }
+  }
 }

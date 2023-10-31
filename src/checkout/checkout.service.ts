@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { CheckoutDto, CheckoutItem } from './dto/checkout-dto';
+import { OrdersService } from 'src/orders/orders.service';
 const stripe = require('stripe')(
   'sk_test_51O7BlTI3fhUzlLHI9fiOiGDlks47o5duVu0uqxTM6fYUdnWlDcXTG5AiMQzaqUxYExUXybltBssY0C4fknV7QpGS00xK9BfdBR',
 );
 
 @Injectable()
 export class CheckoutService {
-  constructor() {}
+  constructor(private ordersService: OrdersService) {}
 
   async checkout(checkoutDto: CheckoutDto) {
     try {
@@ -28,6 +29,13 @@ export class CheckoutService {
         success_url: 'http://localhost:4200/cart/success',
         cancel_url: 'http://localhost:4200/cart/',
       });
+
+      // Create the order
+      const orderDto = {
+        items: checkoutDto.items,
+        userId: checkoutDto.userId,
+      };
+      await this.ordersService.createOrder(orderDto);
 
       return session;
     } catch (error) {

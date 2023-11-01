@@ -10,7 +10,7 @@ export class CheckoutController {
   @Post()
   async checkout(
     @Body() checkoutDto: CheckoutDto,
-  ): Promise<{ session: string; order: Order }> {
+  ): Promise<{ session: any; order: Order }> {
     const { session, order } = await this.checkoutService.checkout(checkoutDto);
     return { session, order };
   }

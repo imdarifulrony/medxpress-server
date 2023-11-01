@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CheckoutDto, CheckoutItem } from './dto/checkout-dto';
 import { OrdersService } from 'src/orders/orders.service';
-const stripe = require('stripe')(
+import Stripe from 'stripe';
+const stripe = new Stripe(
   'sk_test_51O7BlTI3fhUzlLHI9fiOiGDlks47o5duVu0uqxTM6fYUdnWlDcXTG5AiMQzaqUxYExUXybltBssY0C4fknV7QpGS00xK9BfdBR',
 );
 

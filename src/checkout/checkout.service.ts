@@ -14,13 +14,14 @@ export class CheckoutService {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items: checkoutDto.items.map((item: CheckoutItem) => {
+          const priceInCents = Math.ceil(item.price * 100);
           return {
             price_data: {
               currency: 'bdt',
               product_data: {
                 name: item.name,
               },
-              unit_amount: item.price * 100,
+              unit_amount: priceInCents,
             },
             quantity: item.quantity,
           };
@@ -29,13 +30,13 @@ export class CheckoutService {
         success_url: `http://localhost:4200/cart/success`,
         cancel_url: 'http://localhost:4200/cart/',
       });
-
       // Create the order
       const orderDto = {
         items: checkoutDto.items,
         userId: checkoutDto.userId,
         orderStatus: 'PENDING',
       };
+
       const order = await this.ordersService.createOrder(orderDto);
       return { session, order };
     } catch (error) {

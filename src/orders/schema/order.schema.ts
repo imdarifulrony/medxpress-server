@@ -5,6 +5,7 @@ export enum OrderStatus {
   DELIVERED = 'DELIVERED',
   SHIPPED = 'SHIPPED',
   PENDING = 'PENDING',
+  CANCELED = 'CANCELED',
 }
 
 @Schema({

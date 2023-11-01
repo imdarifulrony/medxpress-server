@@ -2,6 +2,7 @@
  * Auth Service
  */
 import {
+  ConflictException,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -30,18 +31,17 @@ export class AuthService {
   async signup(
     signupDto: SignUpDto,
   ): Promise<{ access_token: string; expires_in: string }> {
-    // extract data
     const { firstName, lastName, postalCode, email, password, address, role } =
       signupDto;
 
-    // hash password using bcrypt
+    // Check if a user with the provided email already exists
+    const existingUser = await this.userModel.findOne({ email }).exec();
+    if (existingUser) {
+      throw new ConflictException('Email already in use');
+    }
+
+    // Continue with user creation if email is not in use
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    // check user exists on the db or not
-
-    //  write some code
-
-    // create new user in db
     const user = await this.userModel.create({
       firstName,
       lastName,
@@ -52,14 +52,12 @@ export class AuthService {
       role,
     });
 
-    // assign jwt to user
     const access_token = this.jwtService.sign({
       id: user._id,
     });
 
     const expires_in = process.env.JWT_EXPIRES_IN;
 
-    // return the token to client
     return { access_token, expires_in };
   }
 
@@ -96,11 +94,9 @@ export class AuthService {
     try {
       console.log('id', id);
 
-      // Use the Mongoose Model to find the user by ID
       const user = await this.userModel.findById(id).exec();
       return user;
     } catch (error) {
-      // Handle any potential errors (e.g., database connection issues)
       throw new UnauthorizedException('User not found');
     }
   }
@@ -110,7 +106,6 @@ export class AuthService {
       const user = await this.userModel.findOne({ email }).exec();
       return !!user; // Return true if a user with this email already exists
     } catch (error) {
-      // Handle any errors appropriately
       throw new NotFoundException('Failed to check for duplicate email');
     }
   }

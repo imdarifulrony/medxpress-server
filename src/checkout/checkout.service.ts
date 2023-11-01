@@ -26,7 +26,7 @@ export class CheckoutService {
           };
         }),
         mode: 'payment',
-        success_url: 'http://localhost:4200/cart/success',
+        success_url: `http://localhost:4200/cart/success`,
         cancel_url: 'http://localhost:4200/cart/',
       });
 
@@ -34,10 +34,10 @@ export class CheckoutService {
       const orderDto = {
         items: checkoutDto.items,
         userId: checkoutDto.userId,
+        orderStatus: 'PENDING',
       };
-      await this.ordersService.createOrder(orderDto);
-
-      return session;
+      const order = await this.ordersService.createOrder(orderDto);
+      return { session, order };
     } catch (error) {
       console.error(error);
       throw error;

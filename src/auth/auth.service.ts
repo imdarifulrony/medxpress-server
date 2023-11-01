@@ -1,7 +1,11 @@
 /**
  * Auth Service
  */
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
@@ -98,6 +102,16 @@ export class AuthService {
     } catch (error) {
       // Handle any potential errors (e.g., database connection issues)
       throw new UnauthorizedException('User not found');
+    }
+  }
+
+  async checkDuplicateEmail(email: string): Promise<boolean> {
+    try {
+      const user = await this.userModel.findOne({ email }).exec();
+      return !!user; // Return true if a user with this email already exists
+    } catch (error) {
+      // Handle any errors appropriately
+      throw new NotFoundException('Failed to check for duplicate email');
     }
   }
 }

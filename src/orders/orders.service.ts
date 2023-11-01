@@ -13,7 +13,8 @@ export class OrdersService {
   async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
     try {
       const createdOrder = new this.orderModel(createOrderDto);
-      return createdOrder.save();
+      const savedOrder = await createdOrder.save();
+      return savedOrder;
     } catch (error) {
       throw new Error('Failed to create the order');
     }
@@ -58,7 +59,7 @@ export class OrdersService {
 
   async getOrdersByUserId(userId: string): Promise<Order[]> {
     try {
-      return this.orderModel.find({ userId }).exec();
+      return this.orderModel.find({ userId }).sort({ createdAt: -1 }).exec();
     } catch (error) {
       throw new Error('Failed to fetch orders by user ID');
     }

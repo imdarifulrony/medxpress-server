@@ -3,8 +3,11 @@
  */
 import {
   Body,
+  ConflictException,
   Controller,
   Get,
+  InternalServerErrorException,
+  NotFoundException,
   Param,
   ParseUUIDPipe,
   Post,
@@ -13,6 +16,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login-dto';
 import { SignUpDto } from './dto/signup-dto';
 import { User } from './schema/user.schema';
+import { CheckEmailDto } from './dto/check-email.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -49,19 +53,34 @@ export class AuthController {
    */
 
   @Get('/user/:id')
-  async findUserById(
-    // @Param('id', new ParseUUIDPipe()) id: string,
-    @Param('id') id: string,
-  ): Promise<User> {
+  async findUserById(@Param('id') id: string): Promise<User> {
     console.log('here controller', id);
 
-    const user = await this.authService.findUserById(id);
+    try {
+      const user = await this.authService.findUserById(id);
 
-    if (!user) {
-      // Handle the case where the user is not found
-      // You can throw an exception or return an appropriate response
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
+
+      return user;
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to retrieve user');
+    }
+  }
+
+  @Post('/check-email')
+  async checkDuplicateEmail(
+    @Body() checkEmailDto: CheckEmailDto,
+  ): Promise<{ isDuplicate: boolean }> {
+    const isDuplicate = await this.authService.checkDuplicateEmail(
+      checkEmailDto.email,
+    );
+
+    if (isDuplicate) {
+      throw new ConflictException('Email is already in use');
     }
 
-    return user;
+    return { isDuplicate: false };
   }
 }

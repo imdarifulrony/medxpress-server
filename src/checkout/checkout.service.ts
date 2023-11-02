@@ -9,6 +9,7 @@ const stripe = new Stripe(
 @Injectable()
 export class CheckoutService {
   constructor(private ordersService: OrdersService) {}
+  redirectBaseUrl: string = 'https://mymedxpress.netlify.app';
 
   async checkout(checkoutDto: CheckoutDto) {
     try {
@@ -28,8 +29,8 @@ export class CheckoutService {
           };
         }),
         mode: 'payment',
-        success_url: `http://localhost:4200/cart/success`,
-        cancel_url: 'http://localhost:4200/cart/',
+        success_url: `${this.redirectBaseUrl}/cart/success`,
+        cancel_url: `${this.redirectBaseUrl}/cart/`,
       });
       // Create the order
       const orderDto = {

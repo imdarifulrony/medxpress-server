@@ -1,8 +1,11 @@
 # MedXpress - Server Side Code
 
+## READ THE DOCS: [MedXpress - Server Side Code Documentation](https://imdariful.github.io/medxpress-server/)
+
+
 Package Manager Used: PNPM
 
-Listening Port: 3000
+Listening Port: 3001
 
 start the server using `pnpm start:dev`
 

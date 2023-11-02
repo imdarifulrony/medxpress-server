@@ -1,3 +1,7 @@
+/**
+ * @module OrdersController
+ * @description Controller for orders routes.
+ */
 import {
   Controller,
   Get,
@@ -17,6 +21,11 @@ import { Order } from './schema/order.schema';
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
+  /**
+   * @description Create a new order.
+   * @param {CreateOrderDto} createOrderDto - The DTO containing information for creating a new order.
+   * @returns {Promise<Order>} The newly created order.
+   */
   @Post()
   async createOrder(@Body() createOrderDto: CreateOrderDto): Promise<Order> {
     try {
@@ -26,6 +35,10 @@ export class OrdersController {
     }
   }
 
+  /**
+   * @description Get all orders.
+   * @returns {Promise<Order[]>} A list of all orders.
+   */
   @Get()
   async getAllOrders(): Promise<Order[]> {
     try {
@@ -35,6 +48,11 @@ export class OrdersController {
     }
   }
 
+  /**
+   * @description Find details of a specific order by ID.
+   * @param {string} orderId - The ID of the order to retrieve.
+   * @returns {Promise<Order>} Details of the requested order.
+   */
   @Get(':orderId')
   async findOrderById(@Param('orderId') orderId: string): Promise<Order> {
     try {
@@ -48,6 +66,12 @@ export class OrdersController {
     }
   }
 
+  /**
+   * @description Update the details of a specific order.
+   * @param {string} orderId - The ID of the order to update.
+   * @param {CreateOrderDto} updateOrderDto - The DTO containing updated information for the order.
+   * @returns {Promise<Order>} The updated order details.
+   */
   @Put(':orderId')
   async updateOrder(
     @Param('orderId') orderId: string,
@@ -67,6 +91,11 @@ export class OrdersController {
     }
   }
 
+  /**
+   * @description Delete a specific order by ID.
+   * @param {string} orderId - The ID of the order to delete.
+   * @returns {Promise<Order>} Details of the deleted order.
+   */
   @Delete(':orderId')
   async deleteOrder(@Param('orderId') orderId: string): Promise<Order> {
     try {

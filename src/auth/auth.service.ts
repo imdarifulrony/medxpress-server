@@ -1,5 +1,6 @@
 /**
- * Auth Service
+ * @module AuthService
+ * @description Service for managing authentication.
  */
 import {
   ConflictException,
@@ -24,9 +25,9 @@ export class AuthService {
   ) {}
 
   /**
-   * This is a signup function
-   * @param
-   * @param
+   * @description Signup Route
+   * @param signupDto - The DTO for user signup.
+   * @returns {Object} - An object containing an access token and expiration time.
    */
   async signup(
     signupDto: SignUpDto,
@@ -61,6 +62,11 @@ export class AuthService {
     return { access_token, expires_in };
   }
 
+  /**
+   * @description Login Route
+   * @param loginDto - The DTO for user login.
+   * @returns {Object} - An object containing an access token and expiration time.
+   */
   async login(
     loginDto: LoginDto,
   ): Promise<{ access_token: string; expires_in: string }> {
@@ -90,10 +96,13 @@ export class AuthService {
     return { access_token, expires_in };
   }
 
+  /**
+   * @description Find User by ID Route
+   * @param id - The ID of the user to find.
+   * @returns {User|null} - The user with the specified ID or null if not found.
+   */
   async findUserById(id: string): Promise<User | null> {
     try {
-      console.log('id', id);
-
       const user = await this.userModel.findById(id).exec();
       return user;
     } catch (error) {
@@ -101,6 +110,11 @@ export class AuthService {
     }
   }
 
+  /**
+   * @description Check for Duplicate Email
+   * @param email - The email to check for duplication.
+   * @returns {boolean} - Indicates whether the email is a duplicate.
+   */
   async checkDuplicateEmail(email: string): Promise<boolean> {
     try {
       const user = await this.userModel.findOne({ email }).exec();

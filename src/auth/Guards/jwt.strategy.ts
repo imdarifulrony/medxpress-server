@@ -1,3 +1,6 @@
+/**
+ * JWT Strategy
+ */
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { PassportStrategy } from '@nestjs/passport';

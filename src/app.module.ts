@@ -1,5 +1,6 @@
 /**
- * App Module
+ * @module AppModule
+ * @description Main application module.
  */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -14,20 +15,45 @@ import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
-    // configure dot env
+    /**
+     * Configure the .env file as a global configuration.
+     */
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
     }),
-    // Import Mongoose Modules
+    /**
+     * MongooseModule for connecting to the MongoDB database using the URL from the .env file.
+     */
     MongooseModule.forRoot(process.env.MONGODB_URL),
-    // Imports other modules
+    /**
+     * AuthModule for handling authentication-related features.
+     */
     AuthModule,
+    /**
+     * MedicineModule for managing medicine-related features.
+     */
     MedicineModule,
+    /**
+     * OrdersModule for managing orders-related features.
+     */
     OrdersModule,
+    /**
+     * CheckoutModule for handling the checkout process.
+     */
     CheckoutModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [
+    /**
+     * AppController for the main application routes.
+     */
+    AppController,
+  ],
+  providers: [
+    /**
+     * AppService for providing application-level services.
+     */
+    AppService,
+  ],
 })
 export class AppModule {}

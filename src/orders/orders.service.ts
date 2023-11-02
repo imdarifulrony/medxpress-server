@@ -1,3 +1,7 @@
+/**
+ * @module OrdersService
+ * @description Service for managing orders.
+ */
 import { Order } from './schema/order.schema';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -10,6 +14,11 @@ export class OrdersService {
     @InjectModel(Order.name) private readonly orderModel: Model<Order>,
   ) {}
 
+  /**
+   * @description Create a new order.
+   * @param {CreateOrderDto} createOrderDto - The DTO containing information for creating a new order.
+   * @returns {Promise<Order>} The newly created order.
+   */
   async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
     try {
       const createdOrder = new this.orderModel(createOrderDto);
@@ -20,6 +29,10 @@ export class OrdersService {
     }
   }
 
+  /**
+   * @description Get all orders.
+   * @returns {Promise<Order[]>} A list of all orders.
+   */
   async getAllOrders(): Promise<Order[]> {
     try {
       return this.orderModel.find().exec();
@@ -28,6 +41,11 @@ export class OrdersService {
     }
   }
 
+  /**
+   * @description Find details of a specific order by its ID.
+   * @param {string} orderId - The ID of the order to retrieve.
+   * @returns {Promise<Order>} Details of the requested order.
+   */
   async findOrderById(orderId: string): Promise<Order> {
     try {
       return this.orderModel.findById(orderId).exec();
@@ -36,6 +54,12 @@ export class OrdersService {
     }
   }
 
+  /**
+   * @description Update the details of a specific order.
+   * @param {string} orderId - The ID of the order to update.
+   * @param {CreateOrderDto} updateOrderDto - The DTO containing updated information for the order.
+   * @returns {Promise<Order>} The updated order details.
+   */
   async updateOrder(
     orderId: string,
     updateOrderDto: CreateOrderDto,
@@ -49,6 +73,11 @@ export class OrdersService {
     }
   }
 
+  /**
+   * @description Delete a specific order by ID.
+   * @param {string} orderId - The ID of the order to delete.
+   * @returns {Promise<Order>} Details of the deleted order.
+   */
   async deleteOrder(orderId: string): Promise<Order> {
     try {
       return this.orderModel.findByIdAndRemove(orderId).exec();
@@ -57,6 +86,11 @@ export class OrdersService {
     }
   }
 
+  /**
+   * @description Get orders for a specific user by their user ID, sorted in descending order of creation date.
+   * @param {string} userId - The ID of the user to retrieve orders for.
+   * @returns {Promise<Order[]>} A list of orders associated with the user, sorted by creation date in descending order.
+   */
   async getOrdersByUserId(userId: string): Promise<Order[]> {
     try {
       return this.orderModel.find({ userId }).sort({ createdAt: -1 }).exec();

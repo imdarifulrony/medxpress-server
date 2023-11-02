@@ -1,8 +1,7 @@
-/* import { Injectable } from '@nestjs/common';
-
-@Injectable()
-export class MedicineService {} */
-
+/**
+ * @module MedicineService
+ * @description Service for managing medicines.
+ */
 import {
   BadRequestException,
   Injectable,
@@ -20,7 +19,11 @@ export class MedicineService {
     @InjectModel(Medicine.name) private readonly medicineModel: Model<Medicine>,
   ) {}
 
-  // Create a new Medicine
+  /**
+   * @description Create a new medicine.
+   * @param {CreateMedicineDto} createMedicineDto - The DTO containing information for creating a new medicine.
+   * @returns {Promise<Medicine>} The newly created medicine.
+   */
   async createMedicine(
     createMedicineDto: CreateMedicineDto,
   ): Promise<Medicine> {
@@ -28,7 +31,11 @@ export class MedicineService {
     return createdMedicine.save();
   }
 
-  // Find All Medicine
+  /**
+   * @description Find all medicines that match the provided query parameters.
+   * @param {any} queryParams - The query parameters for filtering medicines.
+   * @returns {Promise<Medicine[]>} A list of medicines that match the query.
+   */
   async findAllMedicineByQuery(queryParams: any): Promise<Medicine[]> {
     const { page, limit, search, ...filterParams } = queryParams;
 
@@ -66,7 +73,11 @@ export class MedicineService {
     }
   }
 
-  // Find a single Medicine
+  /**
+   * @description Find details of a specific medicine by ID.
+   * @param {string} id - The ID of the medicine to retrieve.
+   * @returns {Promise<Medicine>} Details of the requested medicine.
+   */
   async findOneMedicine(id: string): Promise<Medicine> {
     const medicine = await this.medicineModel.findById(id).exec();
 
@@ -76,7 +87,12 @@ export class MedicineService {
     return medicine;
   }
 
-  // Update a Medicine
+  /**
+   * @description Update the details of a specific medicine.
+   * @param {string} id - The ID of the medicine to update.
+   * @param {UpdateMedicineDto} updateMedicineDto - The DTO containing updated information for the medicine.
+   * @returns {Promise<Medicine>} The updated medicine details.
+   */
   async updateMedicine(
     id: string,
     updateMedicineDto: UpdateMedicineDto,
@@ -94,7 +110,11 @@ export class MedicineService {
     return updatedMedicine;
   }
 
-  // Delete a Medicine
+  /**
+   * @description Delete a specific medicine by ID.
+   * @param {string} id - The ID of the medicine to delete.
+   * @returns {Promise<Medicine>} Details of the deleted medicine.
+   */
   async deleteMedicine(id: string): Promise<Medicine> {
     const deletedMedicine = await this.medicineModel.findByIdAndRemove(id);
     if (!deletedMedicine) {
@@ -103,6 +123,10 @@ export class MedicineService {
     return deletedMedicine;
   }
 
+  /**
+   * @description Count the total number of medicines.
+   * @returns {Promise<number>} The total count of medicines.
+   */
   async countAll(): Promise<number> {
     return this.medicineModel.countDocuments().exec();
   }

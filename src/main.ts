@@ -6,8 +6,6 @@ import { AppModule } from './app.module';
 
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
-// somewhere in your initialization file
-
 // app.enableCors({
 //   origin: [
 //     'https://mymedxpress.netlify.app/',

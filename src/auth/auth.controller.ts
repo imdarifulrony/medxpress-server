@@ -1,5 +1,6 @@
 /**
- * Auth Controller
+ * @module AuthController
+ * @description Controller for authentication-related routes.
  */
 import {
   Body,
@@ -23,9 +24,9 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   /**
-   * Signup Route
-   * @param signupDto
-   * @returns {Object}
+   * @description Signup Route
+   * @param signupDto - The DTO for user signup.
+   * @returns {Object} - An object containing an access token and expiration time.
    */
   @Post('/signup')
   signup(
@@ -35,9 +36,9 @@ export class AuthController {
   }
 
   /**
-   * Login Route
-   * @param loginDto
-   * @returns {Object}
+   * @description Login Route
+   * @param loginDto - The DTO for user login.
+   * @returns {Object} - An object containing an access token and expiration time.
    */
   @Post('/login')
   login(
@@ -47,15 +48,13 @@ export class AuthController {
   }
 
   /**
-   * Find User by ID Route
-   * @param id
-   * @returns {User}
+   * @description Find User by ID Route
+   * @param id - The ID of the user to find.
+   * @returns {User} - The user with the specified ID.
    */
 
   @Get('/user/:id')
   async findUserById(@Param('id') id: string): Promise<User> {
-    console.log('here controller', id);
-
     try {
       const user = await this.authService.findUserById(id);
 
@@ -69,6 +68,11 @@ export class AuthController {
     }
   }
 
+  /**
+   * @description Check Duplicate Email Route
+   * @param checkEmailDto - The DTO for checking duplicate email.
+   * @returns {Object} - An object indicating whether the email is a duplicate.
+   */
   @Post('/check-email')
   async checkDuplicateEmail(
     @Body() checkEmailDto: CheckEmailDto,

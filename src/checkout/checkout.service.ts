@@ -12,7 +12,7 @@ export class CheckoutService {
   private stripeSecretKey =
     'sk_test_51O7BlTI3fhUzlLHI9fiOiGDlks47o5duVu0uqxTM6fYUdnWlDcXTG5AiMQzaqUxYExUXybltBssY0C4fknV7QpGS00xK9BfdBR';
 
-  private redirectBaseUrl = 'https://mymedxpress.netlify.app';
+  private redirectBaseUrl = 'http://localhost:4200';
 
   constructor(private ordersService: OrdersService) {}
 

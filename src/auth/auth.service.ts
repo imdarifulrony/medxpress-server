@@ -126,14 +126,65 @@ export class AuthService {
   }
 
   // ! SHOP START
-  async registerShop(createShopDto: CreateShopDto): Promise<Shop> {
+  async registerShop(
+    createShopDto: CreateShopDto,
+  ): Promise<{ access_token: string; expires_in: string }> {
     try {
-      const createdShop = new this.shopModel(createShopDto);
-      return createdShop.save();
+      const { email, password } = createShopDto;
+      // Check if a user with the provided email already exists
+      const existingUser = await this.shopModel.findOne({ email }).exec();
+      if (existingUser) {
+        throw new ConflictException('Email already in use');
+      }
+
+      // Continue with user creation if email is not in use
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await this.shopModel.create({
+        ...createShopDto,
+        password: hashedPassword,
+      });
+
+      const access_token = this.jwtService.sign({
+        id: user._id,
+      });
+
+      const expires_in = process.env.JWT_EXPIRES_IN;
+
+      return { access_token, expires_in };
     } catch (error) {
       throw new ConflictException('Failed to register the shop');
     }
   }
+
+  async shopLogin(
+    loginDto: LoginDto,
+  ): Promise<{ access_token: string; expires_in: string }> {
+    // extract data
+    const { email, password } = loginDto;
+
+    const shopOwner = await this.shopModel.findOne({ email });
+
+    if (!shopOwner) {
+      throw new UnauthorizedException('Invalid email or password!');
+    }
+
+    const passwordMatched = await bcrypt.compare(password, shopOwner.password);
+
+    if (!passwordMatched) {
+      throw new UnauthorizedException('Invalid email or password!');
+    }
+
+    // assign jwt to shopOwner
+    const access_token = this.jwtService.sign({
+      id: shopOwner._id,
+    });
+
+    const expires_in = process.env.JWT_EXPIRES_IN;
+
+    // return the token to client
+    return { access_token, expires_in };
+  }
+
   async getAllShops(): Promise<Shop[]> {
     return this.shopModel.find().exec();
   }

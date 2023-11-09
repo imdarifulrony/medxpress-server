@@ -9,8 +9,9 @@ import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PassportModule } from '@nestjs/passport';
-import { UserSchema } from './schema/user.schema';
+import { User, UserSchema } from './schema/user.schema';
 import { JwtStrategy } from './Guards/jwt.strategy';
+import { Shop, ShopSchema } from './schema/shop.schema';
 
 @Module({
   imports: [
@@ -30,11 +31,15 @@ import { JwtStrategy } from './Guards/jwt.strategy';
         };
       },
     }),
-    // import mongoose schema as User
+    // import mongoose schemas
     MongooseModule.forFeature([
       {
-        name: 'User',
+        name: User.name,
         schema: UserSchema,
+      },
+      {
+        name: Shop.name,
+        schema: ShopSchema,
       },
     ]),
   ],

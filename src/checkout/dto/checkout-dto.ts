@@ -4,6 +4,7 @@ import {
   IsNumber,
   Min,
   ValidateNested,
+  IsNotEmpty,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -46,4 +47,8 @@ export class CheckoutDto {
 
   @IsString()
   userId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  deliveryAddress: string;
 }

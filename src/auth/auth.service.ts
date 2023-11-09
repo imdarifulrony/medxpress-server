@@ -15,12 +15,15 @@ import { Model } from 'mongoose';
 import { LoginDto } from './dto/login-dto';
 import { SignUpDto } from './dto/signup-dto';
 import { User } from './schema/user.schema';
+import { CreateShopDto } from './dto/create-shop.dto';
+import { Shop, ShopDocument } from './schema/shop.schema';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectModel(User.name)
     private userModel: Model<User>,
+    @InjectModel(Shop.name) private shopModel: Model<ShopDocument>,
     private jwtService: JwtService,
   ) {}
 
@@ -32,8 +35,7 @@ export class AuthService {
   async signup(
     signupDto: SignUpDto,
   ): Promise<{ access_token: string; expires_in: string }> {
-    const { firstName, lastName, postalCode, email, password, address, role } =
-      signupDto;
+    const { firstName, lastName, email, password, address, role } = signupDto;
 
     // Check if a user with the provided email already exists
     const existingUser = await this.userModel.findOne({ email }).exec();
@@ -46,7 +48,6 @@ export class AuthService {
     const user = await this.userModel.create({
       firstName,
       lastName,
-      postalCode,
       email,
       password: hashedPassword,
       address,
@@ -123,4 +124,26 @@ export class AuthService {
       throw new NotFoundException('Failed to check for duplicate email');
     }
   }
+
+  // ! SHOP START
+  async registerShop(createShopDto: CreateShopDto): Promise<Shop> {
+    try {
+      const createdShop = new this.shopModel(createShopDto);
+      return createdShop.save();
+    } catch (error) {
+      throw new ConflictException('Failed to register the shop');
+    }
+  }
+  async getAllShops(): Promise<Shop[]> {
+    return this.shopModel.find().exec();
+  }
+
+  async getShopById(id: string): Promise<Shop> {
+    const shop = await this.shopModel.findById(id).exec();
+    if (!shop) {
+      throw new NotFoundException('Shop not found');
+    }
+    return shop;
+  }
+  // ! SHOP END
 }

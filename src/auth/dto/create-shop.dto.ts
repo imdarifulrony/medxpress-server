@@ -1,9 +1,16 @@
-/**
- * SignUp DTO
- */
-import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  MinLength,
+} from 'class-validator';
 
-export class SignUpDto {
+export class CreateShopDto {
+  @IsNotEmpty()
+  @IsString()
+  readonly shopName: string;
+
   @IsNotEmpty()
   @IsString()
   readonly firstName: string;
@@ -26,12 +33,10 @@ export class SignUpDto {
   readonly address: string;
 
   @IsNotEmpty()
-  @IsString()
-  readonly role: RoleDto;
-}
+  @IsNumber()
+  readonly lat: number;
 
-export enum RoleDto {
-  ADMIN = 'ADMIN',
-  SHOP = 'SHOP',
-  CUSTOMER = 'CUSTOMER',
+  @IsNotEmpty()
+  @IsNumber()
+  readonly lng: number;
 }

@@ -32,7 +32,10 @@ export class CheckoutService {
         items: checkoutDto.items,
         userId: checkoutDto.userId,
         orderStatus: 'PENDING',
+        deliveryAddress: checkoutDto.deliveryAddress,
       };
+
+      console.log(orderDto);
 
       const order = await this.ordersService.createOrder(orderDto);
 

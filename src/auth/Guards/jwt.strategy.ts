@@ -27,8 +27,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const user = await this.userModel.findById(id);
     const shopUser = await this.shopModel.findById(id);
 
-    if (!user || !shopUser) {
-      throw new UnauthorizedException('Please login to access this endpoint.');
+    if (!user) {
+      if (!shopUser) {
+        throw new UnauthorizedException(
+          'Please login to access this endpoint.',
+        );
+      }
     }
 
     if (user) {

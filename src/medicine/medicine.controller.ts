@@ -32,7 +32,7 @@ export class MedicineController {
    * @returns {Promise<Medicine[]>} A list of medicines that match the query.
    */
   @Get('find')
-  // @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard())
   async findAllMedicineByQuery(@Query() queryParams: any): Promise<Medicine[]> {
     try {
       const medicines =
@@ -55,7 +55,7 @@ export class MedicineController {
    * @returns {Promise<Medicine>} Details of the requested medicine.
    */
   @Get(':id')
-  // @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard())
   findOneMedicine(@Param('id') id: string) {
     return this.medicineService.findOneMedicine(id);
   }
@@ -66,7 +66,7 @@ export class MedicineController {
    * @returns {Promise<Medicine>} The newly created medicine.
    */
   @Post()
-  // @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard())
   createMedicine(@Body() createMedicineDto: CreateMedicineDto) {
     return this.medicineService.createMedicine(createMedicineDto);
   }
@@ -78,7 +78,7 @@ export class MedicineController {
    * @returns {Promise<Medicine>} The updated medicine details.
    */
   @Put(':id')
-  // @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard())
   updateMedicine(
     @Param('id') id: string,
     @Body() updateMedicineDto: UpdateMedicineDto,
@@ -92,7 +92,7 @@ export class MedicineController {
    * @returns {Promise<Medicine>} Details of the deleted medicine.
    */
   @Delete(':id')
-  // @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard())
   deleteMedicine(@Param('id') id: string) {
     return this.medicineService.deleteMedicine(id);
   }

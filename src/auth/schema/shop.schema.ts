@@ -31,6 +31,4 @@ export class Shop {
   lng: number;
 }
 
-// export const ShopSchema = SchemaFactory.createForClass(Shop);
-export type ShopDocument = Shop & Document;
 export const ShopSchema = SchemaFactory.createForClass(Shop);

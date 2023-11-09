@@ -16,14 +16,17 @@ import { LoginDto } from './dto/login-dto';
 import { SignUpDto } from './dto/signup-dto';
 import { User } from './schema/user.schema';
 import { CreateShopDto } from './dto/create-shop.dto';
-import { Shop, ShopDocument } from './schema/shop.schema';
+import { Shop } from './schema/shop.schema';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectModel(User.name)
     private userModel: Model<User>,
-    @InjectModel(Shop.name) private shopModel: Model<ShopDocument>,
+
+    @InjectModel(Shop.name)
+    private shopModel: Model<Shop>,
+
     private jwtService: JwtService,
   ) {}
 
@@ -134,27 +137,25 @@ export class AuthService {
   ): Promise<{ access_token: string; expires_in: string }> {
     try {
       const { email, password } = createShopDto;
-      // Check if a user with the provided email already exists
+
       const existingUser = await this.shopModel.findOne({ email }).exec();
+
       if (existingUser) {
         throw new ConflictException('Email already in use');
       }
 
-      // Continue with user creation if email is not in use
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await this.shopModel.create({
         ...createShopDto,
         password: hashedPassword,
       });
 
-      const access_token = this.jwtService.sign({
-        id: user._id,
-      });
-
+      const access_token = this.jwtService.sign({ id: user._id });
       const expires_in = process.env.JWT_EXPIRES_IN;
 
       return { access_token, expires_in };
     } catch (error) {
+      console.error(error);
       throw new ConflictException('Failed to register the shop');
     }
   }

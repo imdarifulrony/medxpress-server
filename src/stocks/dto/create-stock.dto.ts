@@ -12,7 +12,4 @@ export class CreateStockDto {
   @IsNotEmpty()
   @IsString()
   shopId: string;
-
-  @IsNumber()
-  stockRequest?: number;
 }

@@ -9,7 +9,4 @@ export class UpdateStockDto {
 
   @IsString()
   shopId?: string;
-
-  @IsNumber()
-  stockRequest?: number;
 }

@@ -79,4 +79,25 @@ export class StocksService {
       throw new BadRequestException('Failed to delete stock');
     }
   }
+
+  async searchStockByMedicine(medicineName: string): Promise<Stock[]> {
+    try {
+      return this.stockModel.find({ medicineName }).exec();
+    } catch (error) {
+      throw new NotFoundException('Failed to search stocks by medicine');
+    }
+  }
+
+  async searchStockByMedicineIdAndShopId(
+    medicineId: string,
+    shopId: string,
+  ): Promise<Stock[]> {
+    try {
+      return this.stockModel.find({ medicineId, shopId }).exec();
+    } catch (error) {
+      throw new NotFoundException(
+        'Failed to search stocks by medicine ID and shop ID',
+      );
+    }
+  }
 }

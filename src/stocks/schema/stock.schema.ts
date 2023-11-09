@@ -12,8 +12,5 @@ export class Stock {
 
   @Prop()
   shopId: string;
-
-  @Prop()
-  stockRequest: number;
 }
 export const StockSchema = SchemaFactory.createForClass(Stock);

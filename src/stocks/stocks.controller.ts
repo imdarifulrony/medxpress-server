@@ -8,6 +8,7 @@ import {
   Body,
   NotFoundException,
   BadRequestException,
+  Query,
 } from '@nestjs/common';
 import { StocksService } from './stocks.service';
 import { UpdateStockDto } from './dto/update-stock.dto';
@@ -89,6 +90,34 @@ export class StocksController {
       return stock;
     } catch (error) {
       throw new BadRequestException('Failed to delete stock');
+    }
+  }
+
+  @Get('search/medicine')
+  async searchStockByMedicine(
+    @Query('medicineName') medicineName: string,
+  ): Promise<Stock[]> {
+    try {
+      return await this.stocksService.searchStockByMedicine(medicineName);
+    } catch (error) {
+      throw new NotFoundException('Failed to search stocks by medicine');
+    }
+  }
+
+  @Get('search/medicine-and-shop')
+  async searchStockByMedicineIdAndShopId(
+    @Query('medicineId') medicineId: string,
+    @Query('shopId') shopId: string,
+  ): Promise<Stock[]> {
+    try {
+      return await this.stocksService.searchStockByMedicineIdAndShopId(
+        medicineId,
+        shopId,
+      );
+    } catch (error) {
+      throw new NotFoundException(
+        'Failed to search stocks by medicine ID and shop ID',
+      );
     }
   }
 }

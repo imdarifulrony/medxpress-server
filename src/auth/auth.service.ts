@@ -35,7 +35,8 @@ export class AuthService {
   async signup(
     signupDto: SignUpDto,
   ): Promise<{ access_token: string; expires_in: string }> {
-    const { firstName, lastName, email, password, address, role } = signupDto;
+    const { firstName, lastName, email, password, address, role, lat, lng } =
+      signupDto;
 
     // Check if a user with the provided email already exists
     const existingUser = await this.userModel.findOne({ email }).exec();
@@ -52,6 +53,8 @@ export class AuthService {
       password: hashedPassword,
       address,
       role,
+      lat,
+      lng,
     });
 
     const access_token = this.jwtService.sign({

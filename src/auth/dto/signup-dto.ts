@@ -1,7 +1,13 @@
 /**
  * SignUp DTO
  */
-import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  MinLength,
+} from 'class-validator';
 
 export class SignUpDto {
   @IsNotEmpty()
@@ -28,6 +34,14 @@ export class SignUpDto {
   @IsNotEmpty()
   @IsString()
   readonly role: RoleDto;
+
+  @IsNotEmpty()
+  @IsNumber()
+  readonly lat: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  readonly lng: number;
 }
 
 export enum RoleDto {

@@ -35,6 +35,12 @@ export class User {
 
   @Prop()
   role: UserRole;
+
+  @Prop()
+  lat: number;
+
+  @Prop()
+  lng: number;
 }
 
 // export User schema

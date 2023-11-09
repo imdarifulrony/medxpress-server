@@ -51,4 +51,12 @@ export class CheckoutDto {
   @IsString()
   @IsNotEmpty()
   deliveryAddress: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  deliveryLat: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  deliveryLng: number;
 }

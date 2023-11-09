@@ -26,4 +26,8 @@ export class CreateOrderDto {
   @IsString()
   @IsNotEmpty()
   deliveryAddress: string;
+
+  @IsString()
+  @IsNotEmpty()
+  closestShop: string;
 }

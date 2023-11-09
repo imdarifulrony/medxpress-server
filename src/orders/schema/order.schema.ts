@@ -23,5 +23,8 @@ export class Order {
 
   @Prop()
   deliveryAddress: string;
+
+  @Prop()
+  closestShop: string;
 }
 export const OrderSchema = SchemaFactory.createForClass(Order);

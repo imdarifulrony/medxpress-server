@@ -6,6 +6,9 @@ import { Injectable } from '@nestjs/common';
 import { CheckoutDto, CheckoutItem } from './dto/checkout-dto';
 import { OrdersService } from 'src/orders/orders.service';
 import stripe from 'stripe';
+import { AuthService } from 'src/auth/auth.service';
+import { Shop } from 'src/auth/schema/shop.schema';
+import { deg2rad } from 'src/helper/utility';
 
 @Injectable()
 export class CheckoutService {
@@ -14,7 +17,10 @@ export class CheckoutService {
 
   private redirectBaseUrl = 'http://localhost:4200';
 
-  constructor(private ordersService: OrdersService) {}
+  constructor(
+    private ordersService: OrdersService,
+    private authService: AuthService,
+  ) {}
 
   /**
    * @description Initiates the checkout process, creates a payment session, and creates an order.
@@ -28,14 +34,30 @@ export class CheckoutService {
     try {
       const session = await this.createStripeSession(checkoutDto);
 
+      const destinationLat = checkoutDto.deliveryLat;
+      const destinationLng = checkoutDto.deliveryLng;
+      // Get all shop data
+      const allShopData: Shop[] = await this.authService.getAllShops();
+
+      // Find the closest shop
+      const closestShop = this.findClosestShop(
+        allShopData,
+        destinationLat,
+        destinationLng,
+      );
+
+      // Use closestShop for further processing
+      console.log('Closest Shop:', closestShop);
+
       const orderDto = {
         items: checkoutDto.items,
         userId: checkoutDto.userId,
         orderStatus: 'PENDING',
         deliveryAddress: checkoutDto.deliveryAddress,
+        deliveryLat: checkoutDto.deliveryLat,
+        deliveryLng: checkoutDto.deliveryLng,
+        closestShop: closestShop?._id,
       };
-
-      console.log(orderDto);
 
       const order = await this.ordersService.createOrder(orderDto);
 
@@ -76,4 +98,53 @@ export class CheckoutService {
 
     return session;
   }
+
+  // !START
+
+  findClosestShop(
+    shops: Shop[],
+    destinationLat: number,
+    destinationLng: number,
+  ): Shop {
+    const calculateDistance = (
+      lat1: number,
+      lon1: number,
+      lat2: number,
+      lon2: number,
+    ) => {
+      const R = 6371;
+      const dLat = deg2rad(lat2 - lat1);
+      const dLon = deg2rad(lon2 - lon1);
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) *
+          Math.cos(deg2rad(lat2)) *
+          Math.sin(dLon / 2) *
+          Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const distance = R * c;
+      return distance;
+    };
+
+    let closestShop: Shop | null = null;
+    let minDistance = Number.MAX_VALUE;
+
+    for (const shop of shops) {
+      const distance = calculateDistance(
+        destinationLat,
+        destinationLng,
+        shop.lat,
+        shop.lng,
+      );
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestShop = shop;
+      }
+    }
+
+    return closestShop!;
+  }
+
+  // ! END
 }

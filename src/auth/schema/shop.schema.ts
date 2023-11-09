@@ -4,6 +4,9 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema({ timestamps: true })
 export class Shop {
   @Prop()
+  _id: string;
+
+  @Prop()
   shopName: string;
 
   @Prop()

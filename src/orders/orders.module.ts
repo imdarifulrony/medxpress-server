@@ -7,13 +7,17 @@ import { OrdersService } from './orders.service';
 import { OrdersController } from './orders.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Order, OrderSchema } from './schema/order.schema';
+import { Stock, StockSchema } from 'src/stocks/schema/stock.schema';
 
 @Module({
   imports: [
     /**
      * MongooseModule for registering the Order model with its schema.
      */
-    MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]),
+    MongooseModule.forFeature([
+      { name: Order.name, schema: OrderSchema },
+      { name: Stock.name, schema: StockSchema },
+    ]),
   ],
   providers: [
     /**

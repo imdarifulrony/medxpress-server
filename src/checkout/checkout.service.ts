@@ -56,7 +56,7 @@ export class CheckoutService {
         deliveryAddress: checkoutDto.deliveryAddress,
         deliveryLat: checkoutDto.deliveryLat,
         deliveryLng: checkoutDto.deliveryLng,
-        closestShop: closestShop?._id,
+        closestShop: (closestShop as any)._id,
       };
 
       const order = await this.ordersService.createOrder(orderDto);

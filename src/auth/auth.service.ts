@@ -136,7 +136,18 @@ export class AuthService {
     createShopDto: CreateShopDto,
   ): Promise<{ access_token: string; expires_in: string }> {
     try {
-      const { email, password } = createShopDto;
+      const {
+        shopName,
+        firstName,
+        lastName,
+        email,
+        password,
+        address,
+        lat,
+        lng,
+      } = createShopDto;
+
+      console.log(createShopDto);
 
       const existingUser = await this.shopModel.findOne({ email }).exec();
 
@@ -145,15 +156,41 @@ export class AuthService {
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);
-      const user = await this.shopModel.create({
-        ...createShopDto,
-        password: hashedPassword,
-      });
 
-      const access_token = this.jwtService.sign({ id: user._id });
-      const expires_in = process.env.JWT_EXPIRES_IN;
+      // const shop = await this.shopModel.create({
+      //   shopName,
+      //   firstName,
+      //   lastName,
+      //   email,
+      //   password: hashedPassword,
+      //   address,
+      //   lat,
+      //   lng,
+      // });
 
-      return { access_token, expires_in };
+      return this.shopModel
+        .create({
+          shopName,
+          firstName,
+          lastName,
+          email,
+          password: hashedPassword,
+          address,
+          lat,
+          lng,
+        })
+        .then((shop) => {
+          console.log('Shop created!', shop);
+          const access_token = this.jwtService.sign({ id: shop._id });
+          const expires_in = process.env.JWT_EXPIRES_IN;
+
+          return { access_token, expires_in };
+        });
+
+      // const access_token = this.jwtService.sign({ id: shop._id });
+      // const expires_in = process.env.JWT_EXPIRES_IN;
+
+      // return { access_token, expires_in };
     } catch (error) {
       console.error(error);
       throw new ConflictException('Failed to register the shop');

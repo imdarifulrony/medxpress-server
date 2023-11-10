@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >AuthService</li>
+  <li class="breadcrumb-item" >StocksService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,7 +64,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/auth/auth.service.ts</code>
+            <code>src/stocks/stocks.service.ts</code>
         </p>
 
 
@@ -86,35 +86,35 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#checkDuplicateEmail" >checkDuplicateEmail</a>
+                                <a href="#createStock" >createStock</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findUserById" >findUserById</a>
+                                <a href="#deleteStock" >deleteStock</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#getAllShops" >getAllShops</a>
+                                <a href="#getAllStocks" >getAllStocks</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#getShopById" >getShopById</a>
+                                <a href="#getAllStocksByShopId" >getAllStocksByShopId</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#login" >login</a>
+                                <a href="#getStockById" >getStockById</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#registerShop" >registerShop</a>
+                                <a href="#searchStockByMedicine" >searchStockByMedicine</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#shopLogin" >shopLogin</a>
+                                <a href="#searchStockByMedicineIdAndShopId" >searchStockByMedicineIdAndShopId</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#signup" >signup</a>
+                                <a href="#updateStock" >updateStock</a>
                             </li>
                         </ul>
                     </td>
@@ -134,12 +134,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userModel: <a href="../classes/User.html" target="_self">Model&lt;User&gt;</a>, shopModel: <a href="../classes/Shop.html" target="_self">Model&lt;Shop&gt;</a>, jwtService: JwtService)</code>
+<code>constructor(stockModel: <a href="../classes/Stock.html" target="_self">Model&lt;Stock&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/auth/auth.service.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/stocks/stocks.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -157,34 +157,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>userModel</td>
+                                                        <td>stockModel</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/User.html" target="_self" >Model&lt;User&gt;</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>shopModel</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../classes/Shop.html" target="_self" >Model&lt;Shop&gt;</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>jwtService</td>
-                                                  
-                                                        <td>
-                                                                    <code>JwtService</code>
+                                                                        <code><a href="../classes/Stock.html" target="_self" >Model&lt;Stock&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -210,26 +186,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="checkDuplicateEmail"></a>
+                    <a name="createStock"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>checkDuplicateEmail</b></span>
-                        <a href="#checkDuplicateEmail"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>createStock</b></span>
+                        <a href="#createStock"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>checkDuplicateEmail(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>createStock(createStockDto: <a href="../classes/CreateStockDto.html" target="_self">CreateStockDto</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="125"
-                                    class="link-to-prism">src/auth/auth.service.ts:125</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/stocks/stocks.service.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -246,14 +222,13 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>email</td>
+                                                <td>createStockDto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../classes/CreateStockDto.html" target="_self" >CreateStockDto</a></code>
                                             </td>
 
                                             <td>
@@ -261,104 +236,16 @@
                                             </td>
 
 
-                                            <td>
-                                                    <ul>
-<li>The email to check for duplication.</li>
-</ul>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+                            <b>Returns : </b>        <code><a href="../classes/Stock.html" target="_self" >Promise&lt;Stock&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <ul>
-<li>Indicates whether the email is a duplicate.</li>
-</ul>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findUserById"></a>
-                    <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>findUserById</b></span>
-                        <a href="#findUserById"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findUserById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/auth/auth.service.ts:111</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
                                 
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <ul>
-<li>The ID of the user to find.</li>
-</ul>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;User | null&gt;</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <ul>
-<li>The user with the specified ID or null if not found.</li>
-</ul>
-
                             </div>
                 </td>
             </tr>
@@ -368,65 +255,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getAllShops"></a>
+                    <a name="deleteStock"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>getAllShops</b></span>
-                        <a href="#getAllShops"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>deleteStock</b></span>
+                        <a href="#deleteStock"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getAllShops()</code>
+                    <code>deleteStock(stockId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="229"
-                                    class="link-to-prism">src/auth/auth.service.ts:229</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/Shop.html" target="_self" >Promise&lt;Shop[]&gt;</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getShopById"></a>
-                    <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>getShopById</b></span>
-                        <a href="#getShopById"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getShopById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="233"
-                                    class="link-to-prism">src/auth/auth.service.ts:233</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/stocks/stocks.service.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -447,7 +295,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>stockId</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -462,7 +310,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/Shop.html" target="_self" >Promise&lt;Shop&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../classes/Stock.html" target="_self" >Promise&lt;Stock&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -476,26 +324,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="login"></a>
+                    <a name="getAllStocks"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>login</b></span>
-                        <a href="#login"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getAllStocks</b></span>
+                        <a href="#getAllStocks"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>login(loginDto: <a href="../classes/LoginDto.html" target="_self">LoginDto</a>)</code>
+                    <code>getAllStocks()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="77"
-                                    class="link-to-prism">src/auth/auth.service.ts:77</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/stocks/stocks.service.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -503,50 +351,10 @@
             <tr>
                 <td class="col-md-4">
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>loginDto</td>
-                                            <td>
-                                                            <code><a href="../classes/LoginDto.html" target="_self" >LoginDto</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <ul>
-<li>The DTO for user login.</li>
-</ul>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+                            <b>Returns : </b>        <code><a href="../classes/Stock.html" target="_self" >Promise&lt;Stock[]&gt;</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <ul>
-<li>An object containing an access token and expiration time.</li>
-</ul>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -555,26 +363,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="registerShop"></a>
+                    <a name="getAllStocksByShopId"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>registerShop</b></span>
-                        <a href="#registerShop"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getAllStocksByShopId</b></span>
+                        <a href="#getAllStocksByShopId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>registerShop(createShopDto: <a href="../classes/CreateShopDto.html" target="_self">CreateShopDto</a>)</code>
+                    <code>getAllStocksByShopId(shopId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="135"
-                                    class="link-to-prism">src/auth/auth.service.ts:135</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/stocks/stocks.service.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -595,9 +403,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>createShopDto</td>
+                                                <td>shopId</td>
                                             <td>
-                                                            <code><a href="../classes/CreateShopDto.html" target="_self" >CreateShopDto</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -610,7 +418,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+                            <b>Returns : </b>        <code><a href="../classes/Stock.html" target="_self" >Promise&lt;Stock[]&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -624,26 +432,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="shopLogin"></a>
+                    <a name="getStockById"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>shopLogin</b></span>
-                        <a href="#shopLogin"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getStockById</b></span>
+                        <a href="#getStockById"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>shopLogin(loginDto: <a href="../classes/LoginDto.html" target="_self">LoginDto</a>)</code>
+                    <code>getStockById(stockId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="200"
-                                    class="link-to-prism">src/auth/auth.service.ts:200</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/stocks/stocks.service.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -664,9 +472,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>loginDto</td>
+                                                <td>stockId</td>
                                             <td>
-                                                            <code><a href="../classes/LoginDto.html" target="_self" >LoginDto</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -679,7 +487,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+                            <b>Returns : </b>        <code><a href="../classes/Stock.html" target="_self" >Promise&lt;Stock&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -693,26 +501,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="signup"></a>
+                    <a name="searchStockByMedicine"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>signup</b></span>
-                        <a href="#signup"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>searchStockByMedicine</b></span>
+                        <a href="#searchStockByMedicine"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>signup(signupDto: <a href="../classes/SignUpDto.html" target="_self">SignUpDto</a>)</code>
+                    <code>searchStockByMedicine(medicineName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/auth/auth.service.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/stocks/stocks.service.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -729,14 +537,13 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>signupDto</td>
+                                                <td>medicineName</td>
                                             <td>
-                                                            <code><a href="../classes/SignUpDto.html" target="_self" >SignUpDto</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -744,25 +551,178 @@
                                             </td>
 
 
-                                            <td>
-                                                    <ul>
-<li>The DTO for user signup.</li>
-</ul>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+                            <b>Returns : </b>        <code><a href="../classes/Stock.html" target="_self" >Promise&lt;Stock[]&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <ul>
-<li>An object containing an access token and expiration time.</li>
-</ul>
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchStockByMedicineIdAndShopId"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>searchStockByMedicineIdAndShopId</b></span>
+                        <a href="#searchStockByMedicineIdAndShopId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>searchStockByMedicineIdAndShopId(medicineId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, shopId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
 
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/stocks/stocks.service.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>medicineId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>shopId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Stock.html" target="_self" >Promise&lt;Stock[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateStock"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>updateStock</b></span>
+                        <a href="#updateStock"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateStock(stockId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateStockDto: <a href="../classes/UpdateStockDto.html" target="_self">UpdateStockDto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/stocks/stocks.service.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>stockId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>updateStockDto</td>
+                                            <td>
+                                                            <code><a href="../classes/UpdateStockDto.html" target="_self" >UpdateStockDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Stock.html" target="_self" >Promise&lt;Stock&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
                             </div>
                 </td>
             </tr>
@@ -775,241 +735,107 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  ConflictException,
   Injectable,
   NotFoundException,
-  UnauthorizedException,
+  BadRequestException,
 } from &#x27;@nestjs/common&#x27;;
-import { JwtService } from &#x27;@nestjs/jwt&#x27;;
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
-import * as bcrypt from &#x27;bcrypt&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
-import { LoginDto } from &#x27;./dto/login-dto&#x27;;
-import { SignUpDto } from &#x27;./dto/signup-dto&#x27;;
-import { User } from &#x27;./schema/user.schema&#x27;;
-import { CreateShopDto } from &#x27;./dto/create-shop.dto&#x27;;
-import { Shop } from &#x27;./schema/shop.schema&#x27;;
+import { Stock } from &#x27;./schema/stock.schema&#x27;;
+import { CreateStockDto } from &#x27;./dto/create-stock.dto&#x27;;
+import { UpdateStockDto } from &#x27;./dto/update-stock.dto&#x27;;
 
 @Injectable()
-export class AuthService {
-  constructor(
-    @InjectModel(User.name)
-    private userModel: Model&lt;User&gt;,
+export class StocksService {
+  constructor(@InjectModel(Stock.name) private stockModel: Model&lt;Stock&gt;) {}
 
-    @InjectModel(Shop.name)
-    private shopModel: Model&lt;Shop&gt;,
-
-    private jwtService: JwtService,
-  ) {}
-
-  /**
-   * @description Signup Route
-   * @param signupDto - The DTO for user signup.
-   * @returns {Object} - An object containing an access token and expiration time.
-   */
-  async signup(
-    signupDto: SignUpDto,
-  ): Promise&lt;{ access_token: string; expires_in: string }&gt; {
-    const { firstName, lastName, email, password, address, role, lat, lng } &#x3D;
-      signupDto;
-
-    // Check if a user with the provided email already exists
-    const existingUser &#x3D; await this.userModel.findOne({ email }).exec();
-    if (existingUser) {
-      throw new ConflictException(&#x27;Email already in use&#x27;);
-    }
-
-    // Continue with user creation if email is not in use
-    const hashedPassword &#x3D; await bcrypt.hash(password, 10);
-    const user &#x3D; await this.userModel.create({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
-      address,
-      role,
-      lat,
-      lng,
-    });
-
-    const access_token &#x3D; this.jwtService.sign({
-      id: user._id,
-    });
-
-    const expires_in &#x3D; process.env.JWT_EXPIRES_IN;
-
-    return { access_token, expires_in };
-  }
-
-  /**
-   * @description Login Route
-   * @param loginDto - The DTO for user login.
-   * @returns {Object} - An object containing an access token and expiration time.
-   */
-  async login(
-    loginDto: LoginDto,
-  ): Promise&lt;{ access_token: string; expires_in: string }&gt; {
-    // extract data
-    const { email, password } &#x3D; loginDto;
-
-    const user &#x3D; await this.userModel.findOne({ email });
-
-    if (!user) {
-      throw new UnauthorizedException(&#x27;Invalid email or password!&#x27;);
-    }
-
-    const passwordMatched &#x3D; await bcrypt.compare(password, user.password);
-
-    if (!passwordMatched) {
-      throw new UnauthorizedException(&#x27;Invalid email or password!&#x27;);
-    }
-
-    // assign jwt to user
-    const access_token &#x3D; this.jwtService.sign({
-      id: user._id,
-    });
-
-    const expires_in &#x3D; process.env.JWT_EXPIRES_IN;
-
-    // return the token to client
-    return { access_token, expires_in };
-  }
-
-  /**
-   * @description Find User by ID Route
-   * @param id - The ID of the user to find.
-   * @returns {User|null} - The user with the specified ID or null if not found.
-   */
-  async findUserById(id: string): Promise&lt;User | null&gt; {
+  async createStock(createStockDto: CreateStockDto): Promise&lt;Stock&gt; {
     try {
-      const user &#x3D; await this.userModel.findById(id).exec();
-      return user;
+      const createdStock &#x3D; new this.stockModel(createStockDto);
+      const savedStock &#x3D; await createdStock.save();
+      return savedStock;
     } catch (error) {
-      throw new UnauthorizedException(&#x27;User not found&#x27;);
+      throw new BadRequestException(&#x27;Failed to create stock&#x27;);
     }
   }
 
-  /**
-   * @description Check for Duplicate Email
-   * @param email - The email to check for duplication.
-   * @returns {boolean} - Indicates whether the email is a duplicate.
-   */
-  async checkDuplicateEmail(email: string): Promise&lt;boolean&gt; {
+  async getAllStocks(): Promise&lt;Stock[]&gt; {
     try {
-      const user &#x3D; await this.userModel.findOne({ email }).exec();
-      return !!user; // Return true if a user with this email already exists
+      return this.stockModel.find().exec();
     } catch (error) {
-      throw new NotFoundException(&#x27;Failed to check for duplicate email&#x27;);
+      throw new NotFoundException(&#x27;Failed to fetch stocks&#x27;);
     }
   }
 
-  // ! SHOP START
-  async registerShop(
-    createShopDto: CreateShopDto,
-  ): Promise&lt;{ access_token: string; expires_in: string }&gt; {
+  async getStockById(stockId: string): Promise&lt;Stock&gt; {
     try {
-      const {
-        shopName,
-        firstName,
-        lastName,
-        email,
-        password,
-        address,
-        lat,
-        lng,
-      } &#x3D; createShopDto;
-
-      console.log(createShopDto);
-
-      const existingUser &#x3D; await this.shopModel.findOne({ email }).exec();
-
-      if (existingUser) {
-        throw new ConflictException(&#x27;Email already in use&#x27;);
+      const stock &#x3D; await this.stockModel.findById(stockId).exec();
+      if (!stock) {
+        throw new NotFoundException(&#x27;Stock not found&#x27;);
       }
-
-      const hashedPassword &#x3D; await bcrypt.hash(password, 10);
-
-      // const shop &#x3D; await this.shopModel.create({
-      //   shopName,
-      //   firstName,
-      //   lastName,
-      //   email,
-      //   password: hashedPassword,
-      //   address,
-      //   lat,
-      //   lng,
-      // });
-
-      return this.shopModel
-        .create({
-          shopName,
-          firstName,
-          lastName,
-          email,
-          password: hashedPassword,
-          address,
-          lat,
-          lng,
-        })
-        .then((shop) &#x3D;&gt; {
-          console.log(&#x27;Shop created!&#x27;, shop);
-          const access_token &#x3D; this.jwtService.sign({ id: shop._id });
-          const expires_in &#x3D; process.env.JWT_EXPIRES_IN;
-
-          return { access_token, expires_in };
-        });
-
-      // const access_token &#x3D; this.jwtService.sign({ id: shop._id });
-      // const expires_in &#x3D; process.env.JWT_EXPIRES_IN;
-
-      // return { access_token, expires_in };
+      return stock;
     } catch (error) {
-      console.error(error);
-      throw new ConflictException(&#x27;Failed to register the shop&#x27;);
+      throw new NotFoundException(&#x27;Stock not found&#x27;);
     }
   }
 
-  async shopLogin(
-    loginDto: LoginDto,
-  ): Promise&lt;{ access_token: string; expires_in: string }&gt; {
-    // extract data
-    const { email, password } &#x3D; loginDto;
-
-    const shopOwner &#x3D; await this.shopModel.findOne({ email });
-
-    if (!shopOwner) {
-      throw new UnauthorizedException(&#x27;Invalid email or password!&#x27;);
+  async getAllStocksByShopId(shopId: string): Promise&lt;Stock[]&gt; {
+    try {
+      return this.stockModel.find({ shopId }).exec();
+    } catch (error) {
+      throw new NotFoundException(&#x27;Failed to fetch stocks&#x27;);
     }
-
-    const passwordMatched &#x3D; await bcrypt.compare(password, shopOwner.password);
-
-    if (!passwordMatched) {
-      throw new UnauthorizedException(&#x27;Invalid email or password!&#x27;);
-    }
-
-    // assign jwt to shopOwner
-    const access_token &#x3D; this.jwtService.sign({
-      id: shopOwner._id,
-    });
-
-    const expires_in &#x3D; process.env.JWT_EXPIRES_IN;
-
-    // return the token to client
-    return { access_token, expires_in };
   }
 
-  async getAllShops(): Promise&lt;Shop[]&gt; {
-    return this.shopModel.find().exec();
+  async updateStock(
+    stockId: string,
+    updateStockDto: UpdateStockDto,
+  ): Promise&lt;Stock&gt; {
+    try {
+      const stock &#x3D; await this.stockModel
+        .findByIdAndUpdate(stockId, updateStockDto, { new: true })
+        .exec();
+      if (!stock) {
+        throw new NotFoundException(&#x27;Stock not found&#x27;);
+      }
+      return stock;
+    } catch (error) {
+      throw new BadRequestException(&#x27;Failed to update stock&#x27;);
+    }
   }
 
-  async getShopById(id: string): Promise&lt;Shop&gt; {
-    const shop &#x3D; await this.shopModel.findById(id).exec();
-    if (!shop) {
-      throw new NotFoundException(&#x27;Shop not found&#x27;);
+  async deleteStock(stockId: string): Promise&lt;Stock&gt; {
+    try {
+      const stock &#x3D; await this.stockModel.findByIdAndRemove(stockId).exec();
+      if (!stock) {
+        throw new NotFoundException(&#x27;Stock not found&#x27;);
+      }
+      return stock;
+    } catch (error) {
+      throw new BadRequestException(&#x27;Failed to delete stock&#x27;);
     }
-    return shop;
   }
-  // ! SHOP END
+
+  async searchStockByMedicine(medicineName: string): Promise&lt;Stock[]&gt; {
+    try {
+      return this.stockModel.find({ medicineName }).exec();
+    } catch (error) {
+      throw new NotFoundException(&#x27;Failed to search stocks by medicine&#x27;);
+    }
+  }
+
+  async searchStockByMedicineIdAndShopId(
+    medicineId: string,
+    shopId: string,
+  ): Promise&lt;Stock[]&gt; {
+    try {
+      return this.stockModel.find({ medicineId, shopId }).exec();
+    } catch (error) {
+      throw new NotFoundException(
+        &#x27;Failed to search stocks by medicine ID and shop ID&#x27;,
+      );
+    }
+  }
 }
 </code></pre>
     </div>
@@ -1054,7 +880,7 @@ export class AuthService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'AuthService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'StocksService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -10,7 +10,6 @@
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
 	   <link rel="stylesheet" href="./styles/style.css">
         <link rel="stylesheet" href="./styles/dark.css">
-        <link rel="stylesheet" href="./styles/google-material.css">
     </head>
     <body>
 
@@ -32,24 +31,93 @@
                <div class="content getting-started">
                    <div class="content-data">
 
-<h1>MedXpress - Server Side Code</h1>
-<p>Package Manager Used: PNPM</p>
-<p>Listening Port: 3000</p>
-<p>start the server using <code>pnpm start:dev</code></p>
-<h2>Connect with mongoose</h2>
-<p>installed required mongoose packages for connecting with database
-<code>pnpm add mongoose @nestjs/mongoose @nestjs/config</code></p>
-<p>configure .env in app.module.ts</p>
-<h2>Authentication</h2>
-<p>for authentication installed these packages</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">pnpm add &#64;nestjs/passport passport passport-local
-pnpm add -D &#64;types/passport-local
-pnpm add &#64;nestjs/jwt</code></pre></div><p>generate auth using these commands</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">nest g module auth
-nest g controller auth --no-spec
-nest g service auth --no-spec
-pnpm add bcrypt</code></pre></div><p>create user schema in auth named <code>user.schema.ts</code></p>
-<p>Configure passport in auth module</p>
+<h1>MedXpress - Server <img src="./miscellaneous/icons/nestjs.svg" width="30" title="hover text"></h1>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#getting-started">Getting Started</a><ul>
+<li><a href="#database-setup">Database Setup</a></li>
+<li><a href="#server-setup">Server Setup</a></li>
+</ul>
+</li>
+<li><a href="#defined-routes">Defined Routes</a><ul>
+<li><a href="#customer-routes">Customer Routes</a></li>
+<li><a href="#shop-routes">Shop Routes</a></li>
+<li><a href="#payment-routes">Payment Routes</a></li>
+<li><a href="#medicine-routes">Medicine Routes</a></li>
+<li><a href="#orders-routes">Orders Routes</a></li>
+<li><a href="#stocks-routes">Stocks Routes</a></li>
+</ul>
+</li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#client-side">Client Side</a></li>
+</ul>
+<h2>Overview</h2>
+<p>MedXpress Server is built using <a href="https://docs.nestjs.com/">Nest JS</a> and utilizes <a href="https://pnpm.io/">PNPM</a> as the package manager. If you prefer <a href="https://www.npmjs.com/">NPM</a>, delete the <a href="./pnpm-lock.yaml">pnpm-lock.yaml</a> file and run <code>npm install</code> to generate <code>package-lock.json</code>.</p>
+<h2>Getting Started</h2>
+<h3>Database Setup</h3>
+<ol>
+<li>Navigate to <a href="/miscellaneous/medxpress-database-collection/">/miscellaneous/medxpress-database-collection/</a></li>
+<li>Run <code>pnpm install</code> to install dependencies.</li>
+<li>Insert medicine data into MongoDB by running <code>node ./intert_to_mongodb.js</code>.</li>
+<li>Remove duplicate medicine data with <code>node ./find_and_delete_duplicate_data_mongodb.js</code>.</li>
+</ol>
+<h3>Server Setup</h3>
+<ol>
+<li>Go back to the <a href="./">root folder</a> and run <code>pnpm install</code>.</li>
+<li>Start the server with <code>pnpm start:dev</code>. It will run on port <code>3001</code>.</li>
+</ol>
+<h2>Defined Routes</h2>
+<h3>Customer Routes</h3>
+<ul>
+<li>Create new customer: <strong>POST</strong> <code>/auth/signup</code></li>
+<li>Customer login: <strong>POST</strong> <code>/auth/login</code></li>
+<li>Get single customer: <strong>GET</strong> <code>/auth/user/:id</code></li>
+<li>Find duplicate customer email: <strong>POST</strong> <code>/auth/check-email</code></li>
+</ul>
+<h3>Shop Routes</h3>
+<ul>
+<li>Create new shop: <strong>POST</strong> <code>/auth/register-shop</code></li>
+<li>Shop login: <strong>POST</strong> <code>/auth/login-shop</code></li>
+<li>Get all shops: <strong>GET</strong> <code>/auth/shops</code></li>
+<li>Get specific shop: <strong>GET</strong> <code>/auth/shop/:id</code></li>
+</ul>
+<h3>Payment Routes</h3>
+<ul>
+<li>Payment route: <strong>POST</strong> <code>/checkout</code></li>
+</ul>
+<h3>Medicine Routes</h3>
+<ul>
+<li>Get all medicines: <strong>GET</strong> <code>/medicines/find</code></li>
+<li>Get medicine by ID: <strong>GET</strong> <code>/medicines/:id</code></li>
+<li>Create new medicine: <strong>POST</strong> <code>/medicines/</code></li>
+<li>Update a medicine: <strong>PUT</strong> <code>/medicines/:id</code></li>
+<li>Delete a medicine: <strong>DELETE</strong> <code>/medicines/:id</code></li>
+</ul>
+<h3>Orders Routes</h3>
+<ul>
+<li>Create new order: <strong>POST</strong> <code>/orders</code></li>
+<li>Get all orders: <strong>POST</strong> <code>/orders</code></li>
+<li>Get single order by order id: <strong>GET</strong> <code>/orders/:id</code></li>
+<li>Update order by order id: <strong>PUT</strong> <code>/orders/:id</code></li>
+<li>Delete order by order id: <strong>DELETE</strong> <code>/orders/:id</code></li>
+<li>Get orders by userId: <strong>GET</strong> <code>/orders/user/:userId</code></li>
+</ul>
+<h3>Stocks Routes</h3>
+<ul>
+<li>Create Stock: <strong>POST</strong> <code>/stocks</code></li>
+<li>Get all stocks: <strong>GET</strong> <code>/stocks</code></li>
+<li>Get stocks by shop id: <strong>GET</strong> <code>/stocks/shop/:shopId</code></li>
+<li>Get stock by stock id: <strong>GET</strong> <code>/stocks/:stockId</code></li>
+<li>Update stock: <strong>POST</strong> <code>/stocks/:stockId</code></li>
+<li>Delete stock: <strong>DELETE</strong> <code>/stocks/:stockId</code></li>
+<li>Search Stock by Medicine: <strong>GET</strong> <code>/stocks/search/medicine</code></li>
+<li>Search stocks by medicine and shop id: <strong>GET</strong> <code>/search/medicine-and-shop</code></li>
+</ul>
+<h2>Documentation</h2>
+<p>Read the full documentation for the MedXpress Server <a href="https://imdariful.github.io/medxpress-server/">here</a>.</p>
+<h2>Client Side</h2>
+<p>Explore the <a href="https://github.com/imdariful/medxpress-client">MedXpress - Client Side</a> repository.</p>
 
 
 

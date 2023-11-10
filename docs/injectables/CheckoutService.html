@@ -10,7 +10,6 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
-        <link rel="stylesheet" href="../styles/google-material.css">
     </head>
     <body>
 
@@ -113,6 +112,9 @@
                                     <span class="modifier">Async</span>
                                 <a href="#createStripeSession" >createStripeSession</a>
                             </li>
+                            <li>
+                                <a href="#findClosestShop" >findClosestShop</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -131,12 +133,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(ordersService: <a href="../injectables/OrdersService.html" target="_self">OrdersService</a>)</code>
+<code>constructor(ordersService: <a href="../injectables/OrdersService.html" target="_self">OrdersService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/checkout/checkout.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/checkout/checkout.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -158,6 +160,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/OrdersService.html" target="_self" >OrdersService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -201,8 +215,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/checkout/checkout.service.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/checkout/checkout.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -279,8 +293,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/checkout/checkout.service.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/checkout/checkout.service.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -334,6 +348,97 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findClosestShop"></a>
+                    <span class="name">
+                        <span ><b>findClosestShop</b></span>
+                        <a href="#findClosestShop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findClosestShop(shops: <a href="../classes/Shop.html" target="_self">Shop[]</a>, destinationLat: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, destinationLng: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/checkout/checkout.service.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>shops</td>
+                                            <td>
+                                                            <code><a href="../classes/Shop.html" target="_self" >Shop[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>destinationLat</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>destinationLng</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Shop.html" target="_self" >Shop</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
             <section data-compodoc="block-properties">
     
@@ -360,12 +465,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;https://mymedxpress.netlify.app&#x27;</code>
+                        <i>Default value : </i><code>&#x27;http://localhost:4200&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/checkout/checkout.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/checkout/checkout.service.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -397,7 +502,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/checkout/checkout.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/checkout/checkout.service.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -414,15 +519,21 @@
 import { CheckoutDto, CheckoutItem } from &#x27;./dto/checkout-dto&#x27;;
 import { OrdersService } from &#x27;src/orders/orders.service&#x27;;
 import stripe from &#x27;stripe&#x27;;
+import { AuthService } from &#x27;src/auth/auth.service&#x27;;
+import { Shop } from &#x27;src/auth/schema/shop.schema&#x27;;
+import { deg2rad } from &#x27;src/helper/utility&#x27;;
 
 @Injectable()
 export class CheckoutService {
   private stripeSecretKey &#x3D;
     &#x27;sk_test_51O7BlTI3fhUzlLHI9fiOiGDlks47o5duVu0uqxTM6fYUdnWlDcXTG5AiMQzaqUxYExUXybltBssY0C4fknV7QpGS00xK9BfdBR&#x27;;
 
-  private redirectBaseUrl &#x3D; &#x27;https://mymedxpress.netlify.app&#x27;;
+  private redirectBaseUrl &#x3D; &#x27;http://localhost:4200&#x27;;
 
-  constructor(private ordersService: OrdersService) {}
+  constructor(
+    private ordersService: OrdersService,
+    private authService: AuthService,
+  ) {}
 
   /**
    * @description Initiates the checkout process, creates a payment session, and creates an order.
@@ -436,10 +547,29 @@ export class CheckoutService {
     try {
       const session &#x3D; await this.createStripeSession(checkoutDto);
 
+      const destinationLat &#x3D; checkoutDto.deliveryLat;
+      const destinationLng &#x3D; checkoutDto.deliveryLng;
+      // Get all shop data
+      const allShopData: Shop[] &#x3D; await this.authService.getAllShops();
+
+      // Find the closest shop
+      const closestShop &#x3D; this.findClosestShop(
+        allShopData,
+        destinationLat,
+        destinationLng,
+      );
+
+      // Use closestShop for further processing
+      console.log(&#x27;Closest Shop:&#x27;, closestShop);
+
       const orderDto &#x3D; {
         items: checkoutDto.items,
         userId: checkoutDto.userId,
         orderStatus: &#x27;PENDING&#x27;,
+        deliveryAddress: checkoutDto.deliveryAddress,
+        deliveryLat: checkoutDto.deliveryLat,
+        deliveryLng: checkoutDto.deliveryLng,
+        closestShop: (closestShop as any)._id,
       };
 
       const order &#x3D; await this.ordersService.createOrder(orderDto);
@@ -481,6 +611,55 @@ export class CheckoutService {
 
     return session;
   }
+
+  // !START
+
+  findClosestShop(
+    shops: Shop[],
+    destinationLat: number,
+    destinationLng: number,
+  ): Shop {
+    const calculateDistance &#x3D; (
+      lat1: number,
+      lon1: number,
+      lat2: number,
+      lon2: number,
+    ) &#x3D;&gt; {
+      const R &#x3D; 6371;
+      const dLat &#x3D; deg2rad(lat2 - lat1);
+      const dLon &#x3D; deg2rad(lon2 - lon1);
+      const a &#x3D;
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) *
+          Math.cos(deg2rad(lat2)) *
+          Math.sin(dLon / 2) *
+          Math.sin(dLon / 2);
+      const c &#x3D; 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const distance &#x3D; R * c;
+      return distance;
+    };
+
+    let closestShop: Shop | null &#x3D; null;
+    let minDistance &#x3D; Number.MAX_VALUE;
+
+    for (const shop of shops) {
+      const distance &#x3D; calculateDistance(
+        destinationLat,
+        destinationLng,
+        shop.lat,
+        shop.lng,
+      );
+
+      if (distance &lt; minDistance) {
+        minDistance &#x3D; distance;
+        closestShop &#x3D; shop;
+      }
+    }
+
+    return closestShop!;
+  }
+
+  // ! END
 }
 </code></pre>
     </div>

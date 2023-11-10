@@ -10,7 +10,6 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
-        <link rel="stylesheet" href="../styles/google-material.css">
     </head>
     <body>
 
@@ -113,12 +112,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userModel: <a href="../classes/User.html" target="_self">Model&lt;User&gt;</a>)</code>
+<code>constructor(userModel: <a href="../classes/User.html" target="_self">Model&lt;User&gt;</a>, shopModel: <a href="../classes/Shop.html" target="_self">Model&lt;Shop&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/auth/Guards/jwt.strategy.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/auth/Guards/jwt.strategy.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -140,6 +139,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../classes/User.html" target="_self" >Model&lt;User&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>shopModel</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Shop.html" target="_self" >Model&lt;Shop&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -183,8 +194,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/auth/Guards/jwt.strategy.ts:20</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/auth/Guards/jwt.strategy.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -242,10 +253,14 @@ import { PassportStrategy } from &#x27;@nestjs/passport&#x27;;
 import { ExtractJwt, Strategy } from &#x27;passport-jwt&#x27;;
 import { User } from &#x27;../schema/user.schema&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
+import { Shop } from &#x27;../schema/shop.schema&#x27;;
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(@InjectModel(User.name) private readonly userModel: Model&lt;User&gt;) {
+  constructor(
+    @InjectModel(User.name) private readonly userModel: Model&lt;User&gt;,
+    @InjectModel(Shop.name) private readonly shopModel: Model&lt;Shop&gt;,
+  ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: process.env.JWT_SECRET,
@@ -256,12 +271,23 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const { id } &#x3D; payload;
 
     const user &#x3D; await this.userModel.findById(id);
+    const shopUser &#x3D; await this.shopModel.findById(id);
 
     if (!user) {
-      throw new UnauthorizedException(&#x27;Please login to access this endpoint.&#x27;);
+      if (!shopUser) {
+        throw new UnauthorizedException(
+          &#x27;Please login to access this endpoint.&#x27;,
+        );
+      }
     }
 
-    return user;
+    if (user) {
+      return user;
+    }
+
+    if (shopUser) {
+      return shopUser;
+    }
   }
 }
 </code></pre>

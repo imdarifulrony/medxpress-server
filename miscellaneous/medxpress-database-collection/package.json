@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "mongodb": "^6.2.0"
+  },
+  "devDependencies": {
+    "compodoc": "^0.0.41"
   }
 }

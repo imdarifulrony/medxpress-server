@@ -1,4 +1,4 @@
-# MedXpress - Server <img src="./miscellaneous/icons/nestjs.svg" width="30" title="hover text">
+# MedXpress - Server <img src="./miscellaneous/icons/nestjs.svg" width="30" title="NestJS Logo">
 
 ## Table of Contents
 

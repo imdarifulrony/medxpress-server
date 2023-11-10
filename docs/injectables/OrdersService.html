@@ -10,7 +10,6 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
-        <link rel="stylesheet" href="../styles/google-material.css">
     </head>
     <body>
 
@@ -127,12 +126,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(orderModel: <a href="../classes/Order.html" target="_self">Model&lt;Order&gt;</a>)</code>
+<code>constructor(orderModel: <a href="../classes/Order.html" target="_self">Model&lt;Order&gt;</a>, stockModel: <a href="../classes/Stock.html" target="_self">Model&lt;Stock&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/orders/orders.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/orders/orders.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -154,6 +153,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../classes/Order.html" target="_self" >Model&lt;Order&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>stockModel</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Stock.html" target="_self" >Model&lt;Stock&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -197,8 +208,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="22"
-                                    class="link-to-prism">src/orders/orders.service.ts:22</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/orders/orders.service.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -274,8 +285,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="81"
-                                    class="link-to-prism">src/orders/orders.service.ts:81</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/orders/orders.service.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -351,8 +362,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/orders/orders.service.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/orders/orders.service.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -428,8 +439,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/orders/orders.service.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/orders/orders.service.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -471,8 +482,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="94"
-                                    class="link-to-prism">src/orders/orders.service.ts:94</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/orders/orders.service.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -548,8 +559,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/orders/orders.service.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/orders/orders.service.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -632,11 +643,13 @@ import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
 import { CreateOrderDto } from &#x27;./dto/create-order.dto&#x27;;
+import { Stock } from &#x27;src/stocks/schema/stock.schema&#x27;;
 
 @Injectable()
 export class OrdersService {
   constructor(
     @InjectModel(Order.name) private readonly orderModel: Model&lt;Order&gt;,
+    @InjectModel(Stock.name) private readonly stockModel: Model&lt;Stock&gt;,
   ) {}
 
   /**

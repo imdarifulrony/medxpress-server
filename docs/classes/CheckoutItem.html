@@ -10,7 +10,6 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
-        <link rel="stylesheet" href="../styles/google-material.css">
     </head>
     <body>
 
@@ -174,7 +173,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/checkout/dto/checkout-dto.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/checkout/dto/checkout-dto.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -211,7 +210,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/checkout/dto/checkout-dto.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/checkout/dto/checkout-dto.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -247,7 +246,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/checkout/dto/checkout-dto.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/checkout/dto/checkout-dto.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -283,7 +282,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/checkout/dto/checkout-dto.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/checkout/dto/checkout-dto.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -320,7 +319,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/checkout/dto/checkout-dto.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/checkout/dto/checkout-dto.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -357,7 +356,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/checkout/dto/checkout-dto.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/checkout/dto/checkout-dto.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -394,7 +393,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/checkout/dto/checkout-dto.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/checkout/dto/checkout-dto.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -431,7 +430,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/checkout/dto/checkout-dto.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/checkout/dto/checkout-dto.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -456,6 +455,7 @@
   IsNumber,
   Min,
   ValidateNested,
+  IsNotEmpty,
 } from &#x27;class-validator&#x27;;
 import { Type } from &#x27;class-transformer&#x27;;
 
@@ -498,6 +498,18 @@ export class CheckoutDto {
 
   @IsString()
   userId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  deliveryAddress: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  deliveryLat: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  deliveryLng: number;
 }
 </code></pre>
     </div>

@@ -10,7 +10,6 @@
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
         <link rel="stylesheet" href="../styles/dark.css">
-        <link rel="stylesheet" href="../styles/google-material.css">
     </head>
     <body>
 
@@ -62,7 +61,13 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#OrderStatus" title="src/orders/dto/create-order.dto.ts" ><b>OrderStatus</b>&nbsp;&nbsp;&nbsp;(src/.../create-order.dto.ts)</a>
+                        </li>
+                        <li>
                             <a href="#OrderStatus" title="src/orders/schema/order.schema.ts" ><b>OrderStatus</b>&nbsp;&nbsp;&nbsp;(src/.../order.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RoleDto" title="src/auth/dto/signup-dto.ts" ><b>RoleDto</b>&nbsp;&nbsp;&nbsp;(src/.../signup-dto.ts)</a>
                         </li>
                         <li>
                             <a href="#UserRole" title="src/auth/schema/user.schema.ts" ><b>UserRole</b>&nbsp;&nbsp;&nbsp;(src/.../user.schema.ts)</a>
@@ -74,6 +79,49 @@
     </table>
 </section>
 
+    <h3>src/orders/dto/create-order.dto.ts</h3>
+    <section data-compodoc="block-enums">
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="OrderStatus"></a>
+                        <span class="name "><b>OrderStatus</b><a href="#OrderStatus"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;PENDING
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>PENDING</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;COMPLETED
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>COMPLETED</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;CANCELED
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>CANCELED</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
     <h3>src/orders/schema/order.schema.ts</h3>
     <section data-compodoc="block-enums">
         <table class="table table-sm table-bordered">
@@ -122,6 +170,49 @@
                         <tr>
                             <td class="col-md-4">
                                 <i>Value : </i><code>CANCELED</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>src/auth/dto/signup-dto.ts</h3>
+    <section data-compodoc="block-enums">
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="RoleDto"></a>
+                        <span class="name "><b>RoleDto</b><a href="#RoleDto"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;ADMIN
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>ADMIN</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;SHOP
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>SHOP</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;CUSTOMER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>CUSTOMER</code>
                             </td>
                         </tr>
             </tbody>

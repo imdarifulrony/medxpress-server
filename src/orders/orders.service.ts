@@ -7,11 +7,13 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { Stock } from 'src/stocks/schema/stock.schema';
 
 @Injectable()
 export class OrdersService {
   constructor(
     @InjectModel(Order.name) private readonly orderModel: Model<Order>,
+    @InjectModel(Stock.name) private readonly stockModel: Model<Stock>,
   ) {}
 
   /**

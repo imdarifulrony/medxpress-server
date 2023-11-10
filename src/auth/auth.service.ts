@@ -15,12 +15,18 @@ import { Model } from 'mongoose';
 import { LoginDto } from './dto/login-dto';
 import { SignUpDto } from './dto/signup-dto';
 import { User } from './schema/user.schema';
+import { CreateShopDto } from './dto/create-shop.dto';
+import { Shop } from './schema/shop.schema';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectModel(User.name)
     private userModel: Model<User>,
+
+    @InjectModel(Shop.name)
+    private shopModel: Model<Shop>,
+
     private jwtService: JwtService,
   ) {}
 
@@ -32,7 +38,7 @@ export class AuthService {
   async signup(
     signupDto: SignUpDto,
   ): Promise<{ access_token: string; expires_in: string }> {
-    const { firstName, lastName, postalCode, email, password, address, role } =
+    const { firstName, lastName, email, password, address, role, lat, lng } =
       signupDto;
 
     // Check if a user with the provided email already exists
@@ -46,11 +52,12 @@ export class AuthService {
     const user = await this.userModel.create({
       firstName,
       lastName,
-      postalCode,
       email,
       password: hashedPassword,
       address,
       role,
+      lat,
+      lng,
     });
 
     const access_token = this.jwtService.sign({
@@ -123,4 +130,112 @@ export class AuthService {
       throw new NotFoundException('Failed to check for duplicate email');
     }
   }
+
+  // ! SHOP START
+  async registerShop(
+    createShopDto: CreateShopDto,
+  ): Promise<{ access_token: string; expires_in: string }> {
+    try {
+      const {
+        shopName,
+        firstName,
+        lastName,
+        email,
+        password,
+        address,
+        lat,
+        lng,
+      } = createShopDto;
+
+      console.log(createShopDto);
+
+      const existingUser = await this.shopModel.findOne({ email }).exec();
+
+      if (existingUser) {
+        throw new ConflictException('Email already in use');
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // const shop = await this.shopModel.create({
+      //   shopName,
+      //   firstName,
+      //   lastName,
+      //   email,
+      //   password: hashedPassword,
+      //   address,
+      //   lat,
+      //   lng,
+      // });
+
+      return this.shopModel
+        .create({
+          shopName,
+          firstName,
+          lastName,
+          email,
+          password: hashedPassword,
+          address,
+          lat,
+          lng,
+        })
+        .then((shop) => {
+          console.log('Shop created!', shop);
+          const access_token = this.jwtService.sign({ id: shop._id });
+          const expires_in = process.env.JWT_EXPIRES_IN;
+
+          return { access_token, expires_in };
+        });
+
+      // const access_token = this.jwtService.sign({ id: shop._id });
+      // const expires_in = process.env.JWT_EXPIRES_IN;
+
+      // return { access_token, expires_in };
+    } catch (error) {
+      console.error(error);
+      throw new ConflictException('Failed to register the shop');
+    }
+  }
+
+  async shopLogin(
+    loginDto: LoginDto,
+  ): Promise<{ access_token: string; expires_in: string }> {
+    // extract data
+    const { email, password } = loginDto;
+
+    const shopOwner = await this.shopModel.findOne({ email });
+
+    if (!shopOwner) {
+      throw new UnauthorizedException('Invalid email or password!');
+    }
+
+    const passwordMatched = await bcrypt.compare(password, shopOwner.password);
+
+    if (!passwordMatched) {
+      throw new UnauthorizedException('Invalid email or password!');
+    }
+
+    // assign jwt to shopOwner
+    const access_token = this.jwtService.sign({
+      id: shopOwner._id,
+    });
+
+    const expires_in = process.env.JWT_EXPIRES_IN;
+
+    // return the token to client
+    return { access_token, expires_in };
+  }
+
+  async getAllShops(): Promise<Shop[]> {
+    return this.shopModel.find().exec();
+  }
+
+  async getShopById(id: string): Promise<Shop> {
+    const shop = await this.shopModel.findById(id).exec();
+    if (!shop) {
+      throw new NotFoundException('Shop not found');
+    }
+    return shop;
+  }
+  // ! SHOP END
 }

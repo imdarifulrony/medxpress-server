@@ -10,14 +10,15 @@ import {
   InternalServerErrorException,
   NotFoundException,
   Param,
-  ParseUUIDPipe,
   Post,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login-dto';
+import { LoginDto, ShopLoginDto } from './dto/login-dto';
 import { SignUpDto } from './dto/signup-dto';
 import { User } from './schema/user.schema';
 import { CheckEmailDto } from './dto/check-email.dto';
+import { Shop } from './schema/shop.schema';
+import { CreateShopDto } from './dto/create-shop.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -86,5 +87,31 @@ export class AuthController {
     }
 
     return { isDuplicate: false };
+  }
+
+  // ! SHOPS
+
+  @Post('/register-shop')
+  registerShop(
+    @Body() createShopDto: CreateShopDto,
+  ): Promise<{ access_token: string; expires_in: string }> {
+    return this.authService.registerShop(createShopDto);
+  }
+
+  @Post('/login-shop')
+  shopLogin(
+    @Body() loginDto: ShopLoginDto,
+  ): Promise<{ access_token: string; expires_in: string }> {
+    return this.authService.shopLogin(loginDto);
+  }
+
+  @Get('/shops')
+  getAllShops(): Promise<Shop[]> {
+    return this.authService.getAllShops();
+  }
+
+  @Get('/shop/:id')
+  getShopById(@Param('id') id: string): Promise<Shop> {
+    return this.authService.getShopById(id);
   }
 }

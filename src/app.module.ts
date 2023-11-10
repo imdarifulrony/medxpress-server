@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { CheckoutModule } from './checkout/checkout.module';
 import { MedicineModule } from './medicine/medicine.module';
 import { OrdersModule } from './orders/orders.module';
+import { StocksModule } from './stocks/stocks.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { OrdersModule } from './orders/orders.module';
      * CheckoutModule for handling the checkout process.
      */
     CheckoutModule,
+    StocksModule,
   ],
   controllers: [
     /**

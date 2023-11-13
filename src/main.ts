@@ -19,6 +19,8 @@ async function bootstrap() {
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());
-  await app.listen(3001);
+  await app.listen(3001,()=>{
+    console.log(`server is running at http://localhost:3001`)
+  });
 }
 bootstrap();

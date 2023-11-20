@@ -24,6 +24,7 @@ export class MedicineService {
    * @param {CreateMedicineDto} createMedicineDto - The DTO containing information for creating a new medicine.
    * @returns {Promise<Medicine>} The newly created medicine.
    */
+  
   async createMedicine(
     createMedicineDto: CreateMedicineDto,
   ): Promise<Medicine> {
@@ -36,6 +37,7 @@ export class MedicineService {
    * @param {any} queryParams - The query parameters for filtering medicines.
    * @returns {Promise<Medicine[]>} A list of medicines that match the query.
    */
+  
   async findAllMedicineByQuery(queryParams: any): Promise<Medicine[]> {
     const { page, limit, search, ...filterParams } = queryParams;
 

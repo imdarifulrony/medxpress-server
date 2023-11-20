@@ -4,11 +4,11 @@
  */
 import { Injectable } from '@nestjs/common';
 import { CheckoutDto, CheckoutItem } from './dto/checkout-dto';
-import { OrdersService } from 'src/orders/orders.service';
+import { OrdersService } from '../orders/orders.service';
 import stripe from 'stripe';
-import { AuthService } from 'src/auth/auth.service';
-import { Shop } from 'src/auth/schema/shop.schema';
-import { deg2rad } from 'src/helper/utility';
+import { AuthService } from '../auth/auth.service';
+import { Shop } from '../auth/schema/shop.schema';
+import { deg2rad } from '../helper/utility';
 
 @Injectable()
 export class CheckoutService {

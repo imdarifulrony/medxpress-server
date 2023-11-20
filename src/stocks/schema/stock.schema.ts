@@ -12,5 +12,27 @@ export class Stock {
 
   @Prop()
   shopId: string;
+  @Prop()
+  dosage_form: string;
+  @Prop()
+  generics: [string]
+  @Prop()
+  image: string
+  @Prop()
+  manufacturer: string
+  @Prop()
+  name: string
+  @Prop()
+  package_container: string
+  @Prop()
+  package_size: string
+  @Prop()
+  price: number
+  @Prop()
+  strength: string
+  @Prop()
+  type: string
+
+
 }
 export const StockSchema = SchemaFactory.createForClass(Stock);

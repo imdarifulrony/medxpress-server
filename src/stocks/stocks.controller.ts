@@ -20,7 +20,7 @@ export class StocksController {
   constructor(private readonly stocksService: StocksService) {}
 
   @Post()
-  async createStock(@Body() createStockDto: CreateStockDto): Promise<Stock> {
+  async createStock(@Body() createStockDto: any): Promise<Stock> {
     try {
       return await this.stocksService.createStock(createStockDto);
     } catch (error) {
@@ -40,7 +40,7 @@ export class StocksController {
   @Get('shop/:shopId')
   async getAllStocksByShopId(
     @Param('shopId') shopId: string,
-  ): Promise<Stock[]> {
+  ): Promise<any[]> {
     try {
       return await this.stocksService.getAllStocksByShopId(shopId);
     } catch (error) {

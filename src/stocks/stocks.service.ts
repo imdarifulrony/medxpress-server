@@ -15,9 +15,7 @@ export class StocksService {
 
   async createStock(createStockDto: any): Promise<any> {
     try {
-      console.log("before",createStockDto)
       const createdStock = new this.stockModel(createStockDto);
-      console.log("after",createdStock)
       const savedStock = await createdStock.save();
       return savedStock;
     } catch (error) {
@@ -53,9 +51,13 @@ export class StocksService {
     }
   }
 
+  // async updateStocksQuantity(orderItems: any,shopId:string):  {
+  //  const stocks = this.getAllStocksByShopId(shopId)
+  // }
+
   async updateStock(
     stockId: string,
-    updateStockDto: UpdateStockDto,
+    updateStockDto: any,
   ): Promise<Stock> {
     try {
       const stock = await this.stockModel

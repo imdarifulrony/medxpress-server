@@ -100,4 +100,12 @@ export class OrdersService {
       throw new Error('Failed to fetch orders by user ID');
     }
   }
+
+  async getOrdersByShopId(shopId: string): Promise<Order[]> {
+    try {
+      return this.orderModel.find({ closestShop: shopId }).sort({ createdAt: -1 }).exec();
+    } catch (error) {
+      throw new Error('Failed to fetch orders by user ID');
+    }
+  }
 }

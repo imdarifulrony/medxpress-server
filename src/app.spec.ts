@@ -32,14 +32,14 @@ describe('MadEpress Tests', () => {
     return request(app.getHttpServer())
       .post('/medicines')
       .send(medicine)
-      .expect(201)
+      .expect(201);
   });
 
   it(`/find medicines`, () => {
     return request(app.getHttpServer())
       .get('/medicines/find')
-      .query({ page: 1, limit: 10,type: 'allopathic'})
-      .expect(200)
+      .query({ page: 1, limit: 10, type: 'allopathic' })
+      .expect(200);
   });
 
   afterAll(async () => {

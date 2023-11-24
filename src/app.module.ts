@@ -17,47 +17,20 @@ import { PathaoModule } from './pathao/pathao.module';
 
 @Module({
   imports: [
-    /**
-     * Configure the .env file as a global configuration.
-     */
+    // Configure the .env file as a global configuration.
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
     }),
-    /**
-     * MongooseModule for connecting to the MongoDB database using the URL from the .env file.
-     */
     MongooseModule.forRoot(process.env.MONGODB_URL),
-    /**
-     * AuthModule for handling authentication-related features.
-     */
     AuthModule,
-    /**
-     * MedicineModule for managing medicine-related features.
-     */
     MedicineModule,
-    /**
-     * OrdersModule for managing orders-related features.
-     */
     OrdersModule,
-    /**
-     * CheckoutModule for handling the checkout process.
-     */
     CheckoutModule,
     StocksModule,
     PathaoModule,
   ],
-  controllers: [
-    /**
-     * AppController for the main application routes.
-     */
-    AppController,
-  ],
-  providers: [
-    /**
-     * AppService for providing application-level services.
-     */
-    AppService,
-  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

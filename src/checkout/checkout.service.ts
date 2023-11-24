@@ -2,13 +2,14 @@
  * @module CheckoutService
  * @description Service for managing checkouts.
  */
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CheckoutDto, CheckoutItem } from './dto/checkout-dto';
-import { OrdersService } from 'src/orders/orders.service';
+import { OrdersService } from '../orders/orders.service';
 import stripe from 'stripe';
-import { AuthService } from 'src/auth/auth.service';
-import { Shop } from 'src/auth/schema/shop.schema';
-import { deg2rad } from 'src/helper/utility';
+import { AuthService } from '../auth/auth.service';
+import { Shop } from '../auth/schema/shop.schema';
+import { deg2rad } from '../helper/utility';
+import { StocksService } from 'src/stocks/stocks.service';
 
 @Injectable()
 export class CheckoutService {
@@ -20,6 +21,7 @@ export class CheckoutService {
   constructor(
     private ordersService: OrdersService,
     private authService: AuthService,
+    private stocksService: StocksService,
   ) {}
 
   /**
@@ -28,6 +30,12 @@ export class CheckoutService {
    * @returns {Promise<{ session: any; order: any }>} An object containing the payment session and order details.
    * @throws {Error} If an error occurs during the checkout process.
    */
+
+  async checkStocks (){
+    const shops = await this.authService.getAllShops();
+
+  }
+
   async checkout(
     checkoutDto: CheckoutDto,
   ): Promise<{ session: any; order: any }> {
@@ -37,17 +45,20 @@ export class CheckoutService {
       const destinationLat = checkoutDto.deliveryLat;
       const destinationLng = checkoutDto.deliveryLng;
       // Get all shop data
-      const allShopData: Shop[] = await this.authService.getAllShops();
+      
 
       // Find the closest shop
-      const closestShop = this.findClosestShop(
-        allShopData,
+      const closestShop = await this.findClosestShop(
+        checkoutDto.items,
         destinationLat,
         destinationLng,
       );
 
+      if(!closestShop){
+        throw new NotFoundException('Stock not found');
+      }
+
       // Use closestShop for further processing
-      console.log('Closest Shop:', closestShop);
 
       const orderDto = {
         items: checkoutDto.items,
@@ -58,6 +69,8 @@ export class CheckoutService {
         deliveryLng: checkoutDto.deliveryLng,
         closestShop: (closestShop as any)._id,
       };
+
+      // this.stocksService.updateStocksQuantity(checkoutDto.items, orderDto.closestShop )
 
       const order = await this.ordersService.createOrder(orderDto);
 
@@ -99,52 +112,77 @@ export class CheckoutService {
     return session;
   }
 
+
+   calculateDistance = (
+    lat1: number,
+    lon1: number,
+    lat2: number,
+    lon2: number,
+  ) => {
+    const R = 6371;
+    const dLat = deg2rad(lat2 - lat1);
+    const dLon = deg2rad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(deg2rad(lat1)) *
+        Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+    return distance;
+  };
+
   // !START
 
-  findClosestShop(
-    shops: Shop[],
+  async findClosestShop(
+    items: any,
     destinationLat: number,
     destinationLng: number,
-  ): Shop {
-    const calculateDistance = (
-      lat1: number,
-      lon1: number,
-      lat2: number,
-      lon2: number,
-    ) => {
-      const R = 6371;
-      const dLat = deg2rad(lat2 - lat1);
-      const dLon = deg2rad(lon2 - lon1);
-      const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(lat1)) *
-          Math.cos(deg2rad(lat2)) *
-          Math.sin(dLon / 2) *
-          Math.sin(dLon / 2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      const distance = R * c;
-      return distance;
-    };
+  ): Promise<Shop> {
+    const allShopData: Shop[] = await this.authService.getAllShops();
 
     let closestShop: Shop | null = null;
     let minDistance = Number.MAX_VALUE;
 
-    for (const shop of shops) {
-      const distance = calculateDistance(
-        destinationLat,
-        destinationLng,
-        shop.lat,
-        shop.lng,
-      );
-
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestShop = shop;
+    for (const shop of allShopData) {
+      const shopStocks = await this.stocksService.getAllStocksByShopId((shop as any)._id)
+      if(shopStocks.length >= items.length){
+        const isStock = this.isStockAvailable(shopStocks,items) 
+        if(isStock){
+          const distance = this.calculateDistance(
+            destinationLat,
+            destinationLng,
+            shop.lat,
+            shop.lng,
+          );
+    
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestShop = shop;
+          }
+        }
       }
+      
     }
 
     return closestShop!;
   }
 
+  isStockAvailable(stocks:any,items:any){
+    for(let item of items){
+      let isStock= false;
+      for(let stock of stocks){
+        if(stock.name == item.name && stock.quantity >= item.quantity){
+          isStock = true;
+          break;
+        }
+      }
+      if(!isStock){
+        return false;
+      }
+    }
+    return true;
+  }
   // ! END
 }

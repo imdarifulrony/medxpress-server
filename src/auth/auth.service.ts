@@ -17,6 +17,7 @@ import { SignUpDto } from './dto/signup-dto';
 import { User } from './schema/user.schema';
 import { CreateShopDto } from './dto/create-shop.dto';
 import { Shop } from './schema/shop.schema';
+import { PathaoService } from 'src/pathao/pathao.service';
 
 @Injectable()
 export class AuthService {
@@ -28,6 +29,7 @@ export class AuthService {
     private shopModel: Model<Shop>,
 
     private jwtService: JwtService,
+    private pathaoService: PathaoService
   ) {}
 
   /**
@@ -147,7 +149,6 @@ export class AuthService {
         lng,
       } = createShopDto;
 
-      console.log(createShopDto);
 
       const existingUser = await this.shopModel.findOne({ email }).exec();
 
@@ -157,16 +158,13 @@ export class AuthService {
 
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      // const shop = await this.shopModel.create({
-      //   shopName,
-      //   firstName,
-      //   lastName,
-      //   email,
-      //   password: hashedPassword,
-      //   address,
-      //   lat,
-      //   lng,
-      // });
+      const pathaoStore = await this.pathaoService.createPathaoStore({
+        shopName,
+        firstName,
+        lastName,
+        email,
+        address,
+      });
 
       return this.shopModel
         .create({
@@ -180,7 +178,6 @@ export class AuthService {
           lng,
         })
         .then((shop) => {
-          console.log('Shop created!', shop);
           const access_token = this.jwtService.sign({ id: shop._id });
           const expires_in = process.env.JWT_EXPIRES_IN;
 

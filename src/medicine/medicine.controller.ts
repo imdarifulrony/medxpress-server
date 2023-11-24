@@ -32,7 +32,7 @@ export class MedicineController {
    * @returns {Promise<Medicine[]>} A list of medicines that match the query.
    */
   @Get('find')
-  @UseGuards(AuthGuard())
+  // @UseGuards(AuthGuard())
   async findAllMedicineByQuery(@Query() queryParams: any): Promise<Medicine[]> {
     try {
       const medicines =
@@ -66,7 +66,7 @@ export class MedicineController {
    * @returns {Promise<Medicine>} The newly created medicine.
    */
   @Post()
-  @UseGuards(AuthGuard())
+  // @UseGuards(AuthGuard())
   createMedicine(@Body() createMedicineDto: CreateMedicineDto) {
     return this.medicineService.createMedicine(createMedicineDto);
   }

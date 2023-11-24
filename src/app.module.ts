@@ -13,6 +13,7 @@ import { CheckoutModule } from './checkout/checkout.module';
 import { MedicineModule } from './medicine/medicine.module';
 import { OrdersModule } from './orders/orders.module';
 import { StocksModule } from './stocks/stocks.module';
+import { PathaoModule } from './pathao/pathao.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { StocksModule } from './stocks/stocks.module';
      */
     CheckoutModule,
     StocksModule,
+    PathaoModule,
   ],
   controllers: [
     /**

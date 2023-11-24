@@ -7,7 +7,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { Stock } from 'src/stocks/schema/stock.schema';
+import { Stock } from '../stocks/schema/stock.schema';
 
 @Injectable()
 export class OrdersService {
@@ -96,6 +96,14 @@ export class OrdersService {
   async getOrdersByUserId(userId: string): Promise<Order[]> {
     try {
       return this.orderModel.find({ userId }).sort({ createdAt: -1 }).exec();
+    } catch (error) {
+      throw new Error('Failed to fetch orders by user ID');
+    }
+  }
+
+  async getOrdersByShopId(shopId: string): Promise<Order[]> {
+    try {
+      return this.orderModel.find({ closestShop: shopId }).sort({ createdAt: -1 }).exec();
     } catch (error) {
       throw new Error('Failed to fetch orders by user ID');
     }

@@ -10,5 +10,6 @@ import { MongooseModule } from '@nestjs/mongoose';
     MongooseModule.forFeature([{ name: Stock.name, schema: StockSchema }]),
   ],
   controllers: [StocksController],
+  exports: [StocksService]
 })
 export class StocksModule {}

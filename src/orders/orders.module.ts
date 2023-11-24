@@ -7,7 +7,7 @@ import { OrdersService } from './orders.service';
 import { OrdersController } from './orders.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Order, OrderSchema } from './schema/order.schema';
-import { Stock, StockSchema } from 'src/stocks/schema/stock.schema';
+import { Stock, StockSchema } from '../stocks/schema/stock.schema';
 
 @Module({
   imports: [

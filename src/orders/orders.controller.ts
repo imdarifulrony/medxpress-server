@@ -48,6 +48,15 @@ export class OrdersController {
     }
   }
 
+  @Get('shop/:shopId')
+  async getOrdersByShopId(@Param('shopId') shopId: string): Promise<Order[]> {
+    try {
+      return await this.ordersService.getOrdersByShopId(shopId);
+    } catch (error) {
+      throw new NotFoundException('Failed to fetch orders');
+    }
+  }
+
   /**
    * @description Find details of a specific order by ID.
    * @param {string} orderId - The ID of the order to retrieve.

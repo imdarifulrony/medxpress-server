@@ -13,7 +13,7 @@ import { UpdateStockDto } from './dto/update-stock.dto';
 export class StocksService {
   constructor(@InjectModel(Stock.name) private stockModel: Model<Stock>) {}
 
-  async createStock(createStockDto: CreateStockDto): Promise<Stock> {
+  async createStock(createStockDto: any): Promise<any> {
     try {
       const createdStock = new this.stockModel(createStockDto);
       const savedStock = await createdStock.save();
@@ -43,7 +43,7 @@ export class StocksService {
     }
   }
 
-  async getAllStocksByShopId(shopId: string): Promise<Stock[]> {
+  async getAllStocksByShopId(shopId: string): Promise<any[]> {
     try {
       return this.stockModel.find({ shopId }).exec();
     } catch (error) {
@@ -51,9 +51,13 @@ export class StocksService {
     }
   }
 
+  // async updateStocksQuantity(orderItems: any,shopId:string):  {
+  //  const stocks = this.getAllStocksByShopId(shopId)
+  // }
+
   async updateStock(
     stockId: string,
-    updateStockDto: UpdateStockDto,
+    updateStockDto: any,
   ): Promise<Stock> {
     try {
       const stock = await this.stockModel

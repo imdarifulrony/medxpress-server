@@ -12,9 +12,11 @@ import { PassportModule } from '@nestjs/passport';
 import { User, UserSchema } from './schema/user.schema';
 import { JwtStrategy } from './Guards/jwt.strategy';
 import { Shop, ShopSchema } from './schema/shop.schema';
+import { PathaoModule } from 'src/pathao/pathao.module';
 
 @Module({
   imports: [
+    PathaoModule,
     // define jtw as strategy
     PassportModule.register({
       defaultStrategy: 'jwt',

@@ -6,6 +6,7 @@ import { AppModule } from './app.module';
 
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
+import mongoose from 'mongoose';
 // app.enableCors({
 //   origin: [
 //     'https://mymedxpress.netlify.app/',
@@ -19,6 +20,15 @@ async function bootstrap() {
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());
-  await app.listen(3001);
+  // await app.listen(3001);
+  await new Promise((resolve) => mongoose.connection.on('connected', resolve));
+
+  if (mongoose.connection.readyState === 1) {
+    console.log('Database connection established');
+    await app.listen(3000);
+  } else {
+    console.error('Error getting database connection');
+    return;
+  }
 }
 bootstrap();
